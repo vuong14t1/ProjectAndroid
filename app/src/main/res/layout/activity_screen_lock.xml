@@ -5,15 +5,17 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical|center_horizontal"
     android:orientation="vertical"
-    tools:context="com.example.mrpython.elsreen.ScreenLock">
+    tools:context="com.example.mrpython.elsreen.ScreenLock"
+    android:background="@drawable/background">
     <TextView
         android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="0dp"
-        android:text="Mr. Pỵthon"
-        android:textColor="#2619DA"
-        android:textSize="32sp" />
+        android:text="Mr. Python"
+        android:textColor="#29d9d0"
+        android:textSize="45sp"
+        android:fontFamily="@font/playball_regular" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,57 +23,88 @@
         android:layout_marginVertical="10dp"
         android:text="Level"
         android:id="@+id/txtLevel"
-        android:textColor="#2619DA"
-        android:textSize="28sp" />
+        android:textColor="#f7db08"
+        android:textSize="30sp"
+        android:fontFamily="@font/pacifico_regular"/>
 
     <TextView
         android:id="@+id/txtQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="15dp"
-        android:text="Please remember ____ the door after going out" />
+        android:text="Please remember ____ the door after going out"
+        android:textSize="22sp"
+        android:textAlignment="center"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textColor="#ffffff"/>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:orientation="vertical"
+        android:weightSum="4"
+        android:layout_marginTop="20dp">
 
-        <RadioGroup
-            android:id="@+id/rdGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btnAnswerA"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Close"
+            android:textAllCaps="false"
+            android:background="@drawable/button_custom"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#ffffff"
+            android:textSize="16sp"/>
 
-            <RadioButton
-                android:id="@+id/rdAnswerA"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginRight="0dp" />
+        <Button
+            android:id="@+id/btnAnswerB"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Open"
+            android:textAllCaps="false"
+            android:background="@drawable/button_custom"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#ffffff"
+            android:textSize="16sp"/>
 
-            <RadioButton
-                android:id="@+id/rdAnswerB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp" />
+        <Button
+            android:id="@+id/btnAnswerC"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Don't care"
+            android:textAllCaps="false"
+            android:background="@drawable/button_custom"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#ffffff"
+            android:textSize="16sp"/>
 
+        <Button
+            android:id="@+id/btnAnswerD"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Skip"
+            android:textAllCaps="false"
+            android:background="@drawable/button_custom"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#ffffff"
+            android:textSize="16sp"/>
+    </LinearLayout>
 
-            <RadioButton
-                android:id="@+id/rdAnswerC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp" />
-
-            <RadioButton
-                android:id="@+id/rdAnswerD"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp" />
-
-        </RadioGroup>
-    </RelativeLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnUnLock"
-        android:text="Unlock"/>
 </LinearLayout>

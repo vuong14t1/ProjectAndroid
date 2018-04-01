@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LockScreen.iml" filepath="$PROJECT_DIR$/LockScreen.iml" />
-      <module fileurl="file://F:\source android\LockScreen\TheGioiDiDong.iml" filepath="F:\source android\LockScreen\TheGioiDiDong.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProjectAndroid.iml" filepath="$PROJECT_DIR$/ProjectAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
