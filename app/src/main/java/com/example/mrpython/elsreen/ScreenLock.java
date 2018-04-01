@@ -20,12 +20,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class ScreenLock extends AppCompatActivity {
+public class ScreenLock extends AppCompatActivity implements View.OnClickListener {
     // GUI
     private TextView txtName, txtLevel, txtQuestion;
-    private RadioGroup rdGroup;
-    private RadioButton rdAnswerA, rdAnswerB, rdAnswerC, rdAnswerD;
-    private Button btnUnLock;
+    private Button btnAnswerA, btnAnswerB, btnAnswerC, btnAnswerD;
 
     // Logic
     GameBase gameBase;
@@ -71,14 +69,12 @@ public class ScreenLock extends AppCompatActivity {
         this.txtName = (TextView) findViewById(R.id.txtName);
         this.txtLevel = findViewById(R.id.txtLevel);
         this.txtQuestion = findViewById(R.id.txtQuestion);
-        this.rdGroup = findViewById(R.id.rdGroup);
-        this.rdAnswerA = findViewById(R.id.rdAnswerA);
-        this.rdAnswerB = findViewById(R.id.rdAnswerB);
-        this.rdAnswerC = findViewById(R.id.rdAnswerC);
-        this.rdAnswerD = findViewById(R.id.rdAnswerD);
+//        this.rdGroup = findViewById(R.id.rdGroup);
+        this.btnAnswerA = findViewById(R.id.btnAnswerA);
+        this.btnAnswerB = findViewById(R.id.btnAnswerB);
+        this.btnAnswerC = findViewById(R.id.btnAnswerC);
+        this.btnAnswerD = findViewById(R.id.btnAnswerD);
 
-        this.btnUnLock = findViewById(R.id.btnUnLock);
-        //
         this.gameBase = new GameBase();
         this.updateGUI();
     }
@@ -90,10 +86,10 @@ public class ScreenLock extends AppCompatActivity {
         Question qs = this.gameBase.getQuestion();
         qs.shuffleAnswer();
         this.txtQuestion.setText(String.valueOf(qs.getQuestion()));
-        this.rdAnswerA.setText(String.valueOf(qs.getListAnswer().get(0)));
-        this.rdAnswerB.setText(String.valueOf(qs.getListAnswer().get(1)));
-        this.rdAnswerC.setText(String.valueOf(qs.getListAnswer().get(2)));
-        this.rdAnswerD.setText(String.valueOf(qs.getListAnswer().get(3)));
+        this.btnAnswerA.setText(String.valueOf(qs.getListAnswer().get(0)));
+        this.btnAnswerB.setText(String.valueOf(qs.getListAnswer().get(1)));
+        this.btnAnswerC.setText(String.valueOf(qs.getListAnswer().get(2)));
+        this.btnAnswerD.setText(String.valueOf(qs.getListAnswer().get(3)));
     }
     public void updateInfo(){
         Player pl = this.gameBase.getPlayer();
@@ -101,28 +97,25 @@ public class ScreenLock extends AppCompatActivity {
         this.txtLevel.setText(String.valueOf("Level : " + pl.getLevel()));
     }
     public void addEvents(){
-        this.btnUnLock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                processCheck();
-            }
-        });
+        this.btnAnswerA.setOnClickListener(this);
+        this.btnAnswerB.setOnClickListener(this);
+        this.btnAnswerC.setOnClickListener(this);
+        this.btnAnswerD.setOnClickListener(this);
     }
-    public void processCheck(){
-        int idCheckGroup = rdGroup.getCheckedRadioButtonId();
+    public void processCheck(int id){
         String result = "";
-        switch (idCheckGroup){
-            case R.id.rdAnswerA:
-                result = rdAnswerA.getText().toString();
+        switch (id){
+            case R.id.btnAnswerA:
+                result = btnAnswerA.getText().toString();
                 break;
-            case R.id.rdAnswerB:
-                result = rdAnswerB.getText().toString();
+            case R.id.btnAnswerB:
+                result = btnAnswerB.getText().toString();
                 break;
-            case R.id.rdAnswerC:
-                result = rdAnswerC.getText().toString();
+            case R.id.btnAnswerC:
+                result = btnAnswerC.getText().toString();
                 break;
-            case R.id.rdAnswerD:
-                result = rdAnswerD.getText().toString();
+            case R.id.btnAnswerD:
+                result = btnAnswerD.getText().toString();
                 break;
         }
         if(this.gameBase.getQuestion().isResult(result)){
@@ -130,5 +123,10 @@ public class ScreenLock extends AppCompatActivity {
         }else{
             Toast.makeText(this, "Ban da tra loi sai", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        processCheck(view.getId());
     }
 }
