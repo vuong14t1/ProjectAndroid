@@ -26,7 +26,8 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
     private Button btnAnswerA, btnAnswerB, btnAnswerC, btnAnswerD;
 
     // Logic
-    GameBase gameBase;
+    private GameBase gameBase;
+    private Question currentQuestion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         this.btnAnswerC = findViewById(R.id.btnAnswerC);
         this.btnAnswerD = findViewById(R.id.btnAnswerD);
 
-        this.gameBase = new GameBase();
+        this.gameBase = new GameBase(this);
         this.updateGUI();
     }
     public void updateGUI(){
@@ -83,13 +84,13 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         this.updateQuestion();
     }
     public void updateQuestion(){
-        Question qs = this.gameBase.getQuestion();
-        qs.shuffleAnswer();
-        this.txtQuestion.setText(String.valueOf(qs.getQuestion()));
-        this.btnAnswerA.setText(String.valueOf(qs.getListAnswer().get(0)));
-        this.btnAnswerB.setText(String.valueOf(qs.getListAnswer().get(1)));
-        this.btnAnswerC.setText(String.valueOf(qs.getListAnswer().get(2)));
-        this.btnAnswerD.setText(String.valueOf(qs.getListAnswer().get(3)));
+        this.currentQuestion = this.gameBase.getRandomQuestion();
+        this.currentQuestion.shuffleAnswer();
+        this.txtQuestion.setText(String.valueOf(this.currentQuestion.getQuestion()));
+        this.btnAnswerA.setText(String.valueOf(this.currentQuestion.getListAnswer().get(0)));
+        this.btnAnswerB.setText(String.valueOf(this.currentQuestion.getListAnswer().get(1)));
+        this.btnAnswerC.setText(String.valueOf(this.currentQuestion.getListAnswer().get(2)));
+        this.btnAnswerD.setText(String.valueOf(this.currentQuestion.getListAnswer().get(3)));
     }
     public void updateInfo(){
         Player pl = this.gameBase.getPlayer();
@@ -118,7 +119,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
                 result = btnAnswerD.getText().toString();
                 break;
         }
-        if(this.gameBase.getQuestion().isResult(result)){
+        if(this.currentQuestion.isResult(result)){
             finish();
         }else{
             Toast.makeText(this, "Ban da tra loi sai", Toast.LENGTH_SHORT).show();
