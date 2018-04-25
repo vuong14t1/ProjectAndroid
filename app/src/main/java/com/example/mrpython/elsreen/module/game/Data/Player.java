@@ -1,5 +1,8 @@
 package com.example.mrpython.elsreen.module.game.Data;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 /**
  * Created by vuong on 3/25/2018.
  */
@@ -9,9 +12,13 @@ public class Player {
     private long scores;
     private int level;
     private long curExp;
+    private Context context;
 
-    public  Player(){
-
+    public  Player(Context context){
+        this.context = context;
+        scores = 0;
+        level = 1;
+        curExp = 0;
     }
 
     //region SET && GET
@@ -34,6 +41,12 @@ public class Player {
         if(curExp < 0) return;
         this.curExp = curExp;
     }
+
+    public void setContext(Context context)
+    {
+        this.context = context;
+    }
+
     public String getName() {
         if(this.uName == null) return "User";
         return this.uName;
@@ -73,11 +86,25 @@ public class Player {
         this.setLevel(level);
         this.setCurExp(curExp);
     }
-    public void cheatData() {
-        String name = "Mr Python";
+
+
+    public void loadData()
+    {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("gameData", Context.MODE_PRIVATE);
+
+        this.uName = sharedPreferences.getString("name", "");
+        this.level = sharedPreferences.getInt("level", 1);
+        this.curExp = sharedPreferences.getLong("exp", 0);
         long scores = 100;
-        int level = 3;
-        long curExp = 123;
-        this.setData(name, scores, level, curExp);
+    }
+
+    public void saveData()
+    {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("gameData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("name", this.uName);
+        editor.putInt("level", this.level);
+        editor.putLong("exp", this.curExp);
+        editor.apply();
     }
 }
