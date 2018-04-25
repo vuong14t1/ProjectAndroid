@@ -11,10 +11,22 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mrpython.elsreen.module.game.Data.GameBase;
+import com.example.mrpython.elsreen.module.game.Data.Player;
+
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
-    Button btnExit;
+    Button btnStartLockScreen;
+    TextView tvName, tvLevel;
+    EditText txtInputName;
+    LinearLayout lnGetName;
+    GameBase gameBase;
     public BroadcastReceiver lockScreenReceiver = null;
 
     @Override
@@ -22,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         assignView();
+        loadData();
 //        _registerBroadCast();
-        startService(new Intent(this, MainService.class));
-
+//        startService(new Intent(this, MainService.class));
     }
     private void _registerBroadCast(){
         lockScreenReceiver = new StartMyServiceReceiver();
@@ -36,33 +48,81 @@ public class MainActivity extends AppCompatActivity {
 
     private void assignView()
     {
-        btnExit = (Button)findViewById(R.id.btnExit);
+        btnStartLockScreen = (Button)findViewById(R.id.btnStartLockScreen);
+        tvName = (TextView)findViewById(R.id.tvName);
+        tvLevel = (TextView)findViewById(R.id.tvLevel);
+        gameBase = GameBase.getGameBase(this);
+        txtInputName = (EditText)findViewById(R.id.txtInputName);
+        lnGetName = (LinearLayout)findViewById(R.id.lnGetName);
     }
 
-    public void exitClick(View view) {
-        finish();
-        System.exit(0);
+    private void loadData()
+    {
+        Player player = gameBase.getPlayer();
+        player.loadData();
+
+        if (player.getName().equals(""))
+        {
+            lnGetName.setVisibility(View.VISIBLE);
+            tvName.setVisibility(View.INVISIBLE);
+            btnStartLockScreen.setVisibility(View.GONE);
+        }
+        else
+        {
+            tvName.setText(player.getName());
+            tvLevel.setText(player.getLevel() + "");
+        }
     }
 
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_HOME)
+
+
+    //Paste this code to lockscreen
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if(keyCode == KeyEvent.KEYCODE_HOME)
+//        {
+////            Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_SHORT).show();
+//        }
+//
+//        if(keyCode==KeyEvent.KEYCODE_BACK)
+//        {
+////            Toast.makeText(getApplicationContext(), "Back", Toast.LENGTH_SHORT).show();
+//        }
+//
+//        if (keyCode == KeyEvent.KEYCODE_MENU)
+//        {
+////            Toast.makeText(getApplicationContext(), "Menu", Toast.LENGTH_SHORT).show();
+//        }
+//
+//        return false;
+//    }
+
+    public void toggleLockScreen(View view) {
+        if (btnStartLockScreen.getText().toString().equals("Start"))
         {
-//            Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_SHORT).show();
+            gameBase.getPlayer().saveData();
+            btnStartLockScreen.setText("Stop");
+            startService(new Intent(MainActivity.this, MainService.class));
+            System.exit(0);
+        }
+        else
+        {
+            //disable lockscreen
         }
 
-        if(keyCode==KeyEvent.KEYCODE_BACK)
-        {
-//            Toast.makeText(getApplicationContext(), "Back", Toast.LENGTH_SHORT).show();
-        }
+    }
 
-        if (keyCode == KeyEvent.KEYCODE_MENU)
+    public void setName(View view) {
+        String name = txtInputName.getText().toString();
+        if (!name.isEmpty())
         {
-//            Toast.makeText(getApplicationContext(), "Menu", Toast.LENGTH_SHORT).show();
+            gameBase.getPlayer().setName(name);
+            tvName.setText(name);
+            lnGetName.setVisibility(View.INVISIBLE);
+            tvName.setVisibility(View.VISIBLE);
+            btnStartLockScreen.setVisibility(View.VISIBLE);
         }
-
-        return false;
     }
 }
 

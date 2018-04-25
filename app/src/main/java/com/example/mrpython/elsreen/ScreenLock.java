@@ -122,7 +122,9 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         if(this.currentQuestion.isResult(result)){
             finish();
         }else{
+            numberOfTrueAnswers = 0;
             Toast.makeText(this, "Ban da tra loi sai", Toast.LENGTH_SHORT).show();
+            updateQuestion();
         }
     }
 

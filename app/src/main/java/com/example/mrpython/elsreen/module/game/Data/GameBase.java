@@ -25,20 +25,31 @@ public class GameBase {
     private ArrayList<Question> listQuestion;
     private Context context;
     private int resourceDataId = R.raw.data;
+    private static GameBase gameBase;
 
-    public GameBase(Context context) {
+    private GameBase(Context context) {
         this.setContext(context);
-        this.player = new Player();
+        this.player = new Player(context);
         listQuestion = new ArrayList<>();
         this.setData();
     }
 
+    public static GameBase getGameBase(Context context)
+    {
+        if (gameBase  == null)
+            gameBase = new GameBase(context);
+        else
+            gameBase.setContext(context);
+        return gameBase;
+    }
+
     public void setContext(Context context) {
         this.context = context;
+//        this.player.setContext(context);
     }
 
     public void setData() {
-        this.player.cheatData();
+        this.player.loadData();
         try {
             this.readJsonDataFile();
         } catch (Exception e) {
@@ -95,5 +106,34 @@ public class GameBase {
         }
 
         return sb.toString();
+    }
+
+    //Tăng kinh nghiệm, trả lời đúng 1 câu được tăng 1 điểm kinh nghiệm
+    //Trả lời đúng 3 câu liên tiếp tăng 2 điểm kinh nghiệm.
+    //Trả lời đúng 5 câu liên tiếp tăng 3 điểm kinh nghiệm
+    //Hiện đang để tăng 4 điểm để test
+    public void expUp(int numberOfTrueAnswers)
+    {
+        int point;
+        if (numberOfTrueAnswers < 3)
+            point = 4;
+        else
+            if (numberOfTrueAnswers < 5)
+                point = 2;
+            else
+                point = 3;
+        player.setCurExp(player.getCurExp() + point);
+
+        checkLevelUp();
+    }
+
+    private void checkLevelUp()
+    {
+        if (player.getCurExp() > 9)
+        {
+            player.setLevel(player.getLevel() + 1);
+            player.setCurExp(player.getCurExp()%10);
+            player.saveData();
+        }
     }
 }

@@ -10,12 +10,34 @@
     tools:context="com.example.mrpython.elsreen.MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mr. Pỵthon"
+        android:textColor="#2619DA"
         android:textSize="20sp"
-        android:textColor="#2619DA"/>
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/lnGetName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:visibility="invisible">
+
+        <EditText
+            android:id="@+id/txtInputName"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter your name" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="setName"
+            android:text="Ok" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,8 +50,9 @@
         android:id="@+id/tvLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3"
-        android:textSize="200sp" />
+        android:text="0"
+        android:textSize="150sp"
+        android:padding="0dp"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -45,10 +68,10 @@
         android:text="Share Level"/>
 
     <Button
+        android:id="@+id/btnStartLockScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnExit"
-        android:text="Exit"
-        android:onClick="exitClick"/>
+        android:onClick="toggleLockScreen"
+        android:text="Start" />
 
 </LinearLayout>
