@@ -7,7 +7,8 @@
     android:gravity="center_vertical|center_horizontal"
     android:orientation="vertical"
     tools:context="com.example.mrpython.elsreen.ScreenLock"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    android:id="@+id/screenWrapper">
     <TextView
         android:id="@+id/txtName"
         android:layout_width="wrap_content"
@@ -60,7 +61,8 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:textColor="#ffffff"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textStyle="italic" />
 
         <Button
             android:id="@+id/btnAnswerB"
@@ -75,7 +77,8 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:textColor="#ffffff"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textStyle="italic" />
 
         <Button
             android:id="@+id/btnAnswerC"
@@ -90,7 +93,8 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:textColor="#ffffff"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textStyle="italic" />
 
         <Button
             android:id="@+id/btnAnswerD"
@@ -105,7 +109,8 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:textColor="#ffffff"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textStyle="italic" />
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

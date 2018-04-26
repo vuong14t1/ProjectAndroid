@@ -6,16 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#D2D21F"
+    android:background="@drawable/background"
     tools:context="com.example.mrpython.elsreen.MainActivity">
 
     <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mr. Pỵthon"
-        android:textColor="#2619DA"
-        android:textSize="20sp"
+        android:text="Mr. Python"
+        android:textColor="#5af7e7"
+        android:textSize="40sp"
+        android:fontFamily="@font/playball_regular"
         android:visibility="visible" />
 
     <LinearLayout
@@ -43,35 +44,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Level"
-        android:textSize="50sp"
-        android:textColor="#2619DA"/>
+        android:textColor="#0419d4"
+        android:textSize="25sp"
+        android:fontFamily="@font/pacifico_regular"/>
 
     <TextView
         android:id="@+id/tvLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        android:textSize="150sp"
-        android:padding="0dp"/>
+        android:textSize="140sp"
+        android:padding="0dp"
+        android:textColor="#fda90c"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnTopLevel"
         android:text="Top Level"
-        />
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginBottom="10px"
+        android:textColor="#FFF"
+        android:background="@drawable/button_default"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnShare"
-        android:text="Share Level"/>
+        android:text="Share Level"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginBottom="10px"
+        android:background="@drawable/button_default"
+        android:textColor="#FFF"/>
 
     <Button
         android:id="@+id/btnStartLockScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="toggleLockScreen"
-        android:text="Start" />
+        android:text="Start"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginBottom="10px"
+        android:textColor="#FFF"
+        android:background="@drawable/button_default"/>
 
 </LinearLayout>

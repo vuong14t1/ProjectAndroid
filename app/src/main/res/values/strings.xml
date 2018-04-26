@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">ELSreen</string>
     <string name="facebook_app_id">636177143389470</string>
+    <array name="listBackgrounds">
+        <item>@drawable/background</item>
+        <item>@drawable/background2</item>
+        <item>@drawable/background3</item>
+        <item>@drawable/background4</item>
+        <item>@drawable/background5</item>
+        <item>@drawable/background6</item>
+        <item>@drawable/background7</item>
+        <item>@drawable/background8</item>
+        <item>@drawable/background9</item>
+        <item>@drawable/background10</item>
+    </array>
 </resources>
