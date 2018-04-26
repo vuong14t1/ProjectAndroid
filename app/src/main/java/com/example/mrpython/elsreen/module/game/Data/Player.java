@@ -13,12 +13,13 @@ public class Player {
     private int level;
     private long curExp;
     private Context context;
-
+    private String id;
     public  Player(Context context){
         this.context = context;
         scores = 0;
         level = 1;
         curExp = 0;
+        id = "1";
     }
 
     //region SET && GET

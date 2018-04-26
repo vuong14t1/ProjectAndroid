@@ -27,7 +27,7 @@ public class GameBase {
     private int resourceDataId = R.raw.data;
     private static GameBase gameBase;
 
-    private GameBase(Context context) {
+    public GameBase(Context context) {
         this.setContext(context);
         this.player = new Player(context);
         listQuestion = new ArrayList<>();

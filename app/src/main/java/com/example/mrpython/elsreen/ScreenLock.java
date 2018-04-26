@@ -1,6 +1,7 @@
 package com.example.mrpython.elsreen;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,12 @@ import android.widget.Toast;
 import com.example.mrpython.elsreen.module.game.Data.GameBase;
 import com.example.mrpython.elsreen.module.game.Data.Player;
 import com.example.mrpython.elsreen.module.game.Data.Question;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,15 +35,39 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
     // Logic
     private GameBase gameBase;
     private Question currentQuestion;
-
+    private int numberOfTrueAnswers;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference myRef ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_lock);
         startService(new Intent(this, MainService.class));
+        this.initFirebase();
         this.addControls();
         this.addEvents();
         this.readData();
+    }
+    public void initFirebase(){
+        mDatabase = FirebaseDatabase.getInstance();
+        myRef = mDatabase.getReference("TopPlayer");
+        String userId = "123";
+        myRef.child(userId).setValue("vuongpq2");
+
+        myRef.child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String name = dataSnapshot.getValue(String.class);
+                Log.d("ABC" , "value " + name);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+            }
+        });
     }
     public void readData(){
         String data;
@@ -76,7 +107,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         this.btnAnswerC = findViewById(R.id.btnAnswerC);
         this.btnAnswerD = findViewById(R.id.btnAnswerD);
 
-        this.gameBase = new GameBase(this);
+        this.gameBase =  GameBase.getGameBase(this);
         this.updateGUI();
     }
     public void updateGUI(){
