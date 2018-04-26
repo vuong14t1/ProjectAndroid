@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <stroke android:width="1dip" android:color="@color/bright_green" />
-    <gradient android:angle="-90" android:startColor="@color/green_temp"
-        android:endColor="@color/button_green" />
+    <stroke android:width="1dip" android:color="@color/button_press_border" />
+    <gradient android:angle="-90" android:startColor="@color/button_press"
+        android:endColor="@color/button_press" />
     <corners android:radius="25dp" />
 </shape>

@@ -1,12 +1,15 @@
 package com.example.mrpython.elsreen;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -26,11 +29,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Random;
 
 public class ScreenLock extends AppCompatActivity implements View.OnClickListener {
     // GUI
     private TextView txtName, txtLevel, txtQuestion;
     private Button btnAnswerA, btnAnswerB, btnAnswerC, btnAnswerD;
+    private LinearLayout linBackground;
+    private Random random;
+    private Resources res;
+    private TypedArray listBackgrounds;
 
     // Logic
     private GameBase gameBase;
@@ -43,11 +51,24 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_lock);
         startService(new Intent(this, MainService.class));
+        this.changeBackground();
         this.initFirebase();
         this.addControls();
         this.addEvents();
         this.readData();
     }
+
+    public void changeBackground() {
+        linBackground = (LinearLayout) findViewById(R.id.screenWrapper);
+        random = new Random();
+        res = getResources();
+        listBackgrounds = res.obtainTypedArray(R.array.listBackgrounds);
+
+        int randomInt = random.nextInt(listBackgrounds.length());
+        int drawableID = listBackgrounds.getResourceId(randomInt, 1);
+        linBackground.setBackgroundResource(drawableID);
+    }
+
     public void initFirebase(){
         mDatabase = FirebaseDatabase.getInstance();
         myRef = mDatabase.getReference("TopPlayer");
