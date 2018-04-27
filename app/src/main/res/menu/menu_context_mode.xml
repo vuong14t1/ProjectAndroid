@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="All"
+        android:id="@+id/mnAll"/>
+
+    <item android:title="Vocabulary"
+        android:id="@+id/mnVocabulary"/>
+
+    <item android:title="Grammar"
+        android:id="@+id/mnGrammar"/>
+</menu>

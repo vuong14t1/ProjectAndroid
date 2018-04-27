@@ -1,6 +1,7 @@
 package com.example.mrpython.elsreen.module.game.Data;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.example.mrpython.elsreen.MainActivity;
 import com.example.mrpython.elsreen.R;
@@ -22,22 +23,27 @@ import java.util.Random;
 
 public class GameBase {
     private Player player;
-    private ArrayList<Question> listQuestion;
+    private ArrayList<Question> listQuestionGrammar;
+    private ArrayList<Question> listQuestionVocabulary;
     private Context context;
-    private int resourceDataId = R.raw.data;
+    private int resourceGrammarId = R.raw.grammar;
+    private int resourceVocabularyId = R.raw.vocabulary;
     private static GameBase gameBase;
+    private int learningMode;
 
-    public GameBase(Context context) {
+    public GameBase(Context context,int  mode) {
         this.setContext(context);
+        this.setLearningMode(mode);
         this.player = new Player(context);
-        listQuestion = new ArrayList<>();
+        this.listQuestionGrammar = new ArrayList<>();
+        this.listQuestionVocabulary = new ArrayList<>();
         this.setData();
     }
 
-    public static GameBase getGameBase(Context context)
+    public static GameBase getGameBase(Context context, int mode)
     {
         if (gameBase  == null)
-            gameBase = new GameBase(context);
+            gameBase = new GameBase(context, mode);
         else
             gameBase.setContext(context);
         return gameBase;
@@ -48,10 +54,27 @@ public class GameBase {
 //        this.player.setContext(context);
     }
 
+    public void setLearningMode(int mode) {
+        this.learningMode = mode;
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences("learningMode", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("mode", this.learningMode);
+        editor.apply();
+    }
+
+    public int getLearningMode() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("learningMode", Context.MODE_PRIVATE);
+        this.learningMode = sharedPreferences.getInt("mode", 0);
+
+        return this.learningMode;
+    }
+
     public void setData() {
         this.player.loadData();
         try {
-            this.readJsonDataFile();
+            this.readJsonDataFile(this.listQuestionVocabulary, this.resourceVocabularyId);
+            this.readJsonDataFile(this.listQuestionGrammar, this.resourceGrammarId);
         } catch (Exception e) {
             System.out.println("ERROR:" + e.getMessage());
         }
@@ -61,17 +84,32 @@ public class GameBase {
         return this.player;
     }
 
-    public Question getRandomQuestion() {
-        Random rand = new Random();
-        int index = rand.nextInt(this.listQuestion.size());
+    public Question getRandomQuestion(int mode) {
+        Random rand;
+        int index;
 
-        return this.listQuestion.get(index);
+        switch (mode) {
+            case 0:
+                rand =  new Random();
+                int randomMode = rand.nextInt(2) + 1;
+                return this.getRandomQuestion(randomMode);
+            case 1:
+                rand =  new Random();
+                index = rand.nextInt(this.listQuestionVocabulary.size());
+                return this.listQuestionVocabulary.get(index);
+            case 2:
+                rand =  new Random();
+                index = rand.nextInt(this.listQuestionGrammar.size());
+                return this.listQuestionGrammar.get(index);
+            default:
+                return this.getRandomQuestion(this.learningMode);
+        }
     }
 
-    public void readJsonDataFile() throws IOException, JSONException {
+    public void readJsonDataFile(ArrayList<Question> listQuestion, int dataId) throws IOException, JSONException {
 
         // read data on raw/data.json
-        String data = readFile(this.context, this.resourceDataId);
+        String data = this.readFile(this.context, dataId);
         JSONArray jsonArrData = new JSONArray(data);
 
         for (int i = 0; i < jsonArrData.length(); i++) {
@@ -91,7 +129,7 @@ public class GameBase {
             Question question = new Question();
             question.setData(content, result, answers);
 
-            this.listQuestion.add(question);
+            listQuestion.add(question);
         }
     }
 

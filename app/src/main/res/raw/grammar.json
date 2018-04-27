@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "content" : "The rabbit is an animal ___ only eats plants and vegetables.",
+    "answers": [
+      "who",
+      "whose",
+      "whom",
+      "that"
+    ],
+    "result": "that"
+  },
+  {
+    "id": 2,
+    "content" : "They needed to practice ___ the ball.",
+    "answers": [
+      "catch",
+      "catching",
+      "catches",
+      "caught"
+    ],
+    "result": "catching"
+  },
+  {
+    "id": 3,
+    "content" : "I enjoyed ___ in the park with Jane this afternoon.",
+    "answers": [
+      "walk",
+      "walking",
+      "to walk",
+      "to walking"
+    ],
+    "result": "walking"
+  },
+  {
+    "id": 4,
+    "content" : "I'm looking forward __ her tomorrow.",
+    "answers": [
+      "to seeing",
+      "to see",
+      "seeing",
+      "see"
+    ],
+    "result": "to seeing"
+  },
+  {
+    "id": 5,
+    "content" : "We ___ to inform you that the position has been filled.",
+    "answers": [
+      "sorry",
+      "apology",
+      "apologize",
+      "regret"
+    ],
+    "result": "regret"
+  },
+  {
+    "id": 6,
+    "content" : "He ___ decided to quit his job and look for another one.",
+    "answers": [
+      "belated",
+      "last",
+      "finally",
+      "delayed"
+    ],
+    "result": "finally"
+  },
+  {
+    "id": 7,
+    "content" : "She forced him ___ the work.",
+    "answers": [
+      "does",
+      "to do",
+      "doing",
+      "will do"
+    ],
+    "result": "doing"
+  },
+  {
+    "id": 8,
+    "content" : "If only we ___ more time, we could have seen more of the country.",
+    "answers": [
+      "had had",
+      "had",
+      "have had",
+      "would have had"
+    ],
+    "result": "had had"
+  },
+  {
+    "id": 9,
+    "content" : "When I was a child, summer ___ be warmer and winter colder than now.",
+    "answers": [
+      "used to",
+      "would",
+      "are used to",
+      "will"
+    ],
+    "result": "used to"
+  },
+  {
+    "id": 10,
+    "content" : "You had better ___ what you think.",
+    "answers": [
+      "not say",
+      "not to say",
+      "not saying",
+      "not said"
+    ],
+    "result": "not say"
+  },
+  {
+    "id": 11,
+    "content" : "___ being an accountant, she never seems to have any money.",
+    "answers": [
+      "In spite",
+      "Although",
+      "Despite",
+      "Though"
+    ],
+    "result": "Despite"
+  },
+  {
+    "id": 12,
+    "content" : "Both are informative articles, but this one is ___.",
+    "answers": [
+      "best",
+      "the best",
+      "most",
+      "better"
+    ],
+    "result": "better"
+  },
+  {
+    "id": 13,
+    "content" : "She ___ English for 5 years before she visited Canada.",
+    "answers": [
+      "studied",
+      "had been studying",
+      "has studied",
+      "has been studying"
+    ],
+    "result": "had been studying"
+  },
+  {
+    "id": 14,
+    "content" : "If I ___ you, I ___ my facts before I wrote that letter.",
+    "answers": [
+      "am - will check",
+      "were - would check",
+      "had been you - would check",
+      "were - would have checked"
+    ],
+    "result": "were - would have checked"
+  },
+  {
+    "id": 15,
+    "content" : "The first indoor mall which ___ in 1965 in the United States is in Minnesota.",
+    "answers": [
+      "built",
+      "had built",
+      "was built",
+      "were built"
+    ],
+    "result": "was built"
+  },
+  {
+    "id": 16,
+    "content" : "They are ___ friendly people ___ everyone likes them.",
+    "answers": [
+      "so....that",
+      "such....that",
+      "such a....that",
+      "as....as"
+    ],
+    "result": "such....that"
+  },
+  {
+    "id": 17,
+    "content" : "___ to leave early, he sat close to the door.",
+    "answers": [
+      "Want",
+      "Wanting",
+      "Wanted",
+      "To Want"
+    ],
+    "result": "Wanting"
+  },
+  {
+    "id": 18,
+    "content" : "___ loudly, all the boys got hoarse.",
+    "answers": [
+      "Shout",
+      "Shouting",
+      "Shouted",
+      "To shout"
+    ],
+    "result": "Shouted"
+  },
+  {
+    "id": 19,
+    "content" : "The director is not as particular about the project ___ he used to be.",
+    "answers": [
+      "so",
+      "than",
+      "as",
+      "that"
+    ],
+    "result": "as"
+  },
+  {
+    "id": 20,
+    "content" : "Of the two games, no one thought the previous one was ___ exciting game.",
+    "answers": [
+      "more",
+      "the best",
+      "most",
+      "the more"
+    ],
+    "result": "more"
+  }
+]

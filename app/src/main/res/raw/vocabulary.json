@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "content" : "aa.",
+    "answers": [
+      "a",
+      "a",
+      "a",
+      "aa"
+    ],
+    "result": "aa"
+  },
+  {
+    "id": 2,
+    "content" : "bb.",
+    "answers": [
+      "b",
+      "b",
+      "b",
+      "bb"
+    ],
+    "result": "bb"
+  }
+]

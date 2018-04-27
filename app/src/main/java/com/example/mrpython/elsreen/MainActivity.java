@@ -1,14 +1,22 @@
 package com.example.mrpython.elsreen;
 
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
+import android.text.SpannableString;
+import android.text.style.AlignmentSpan;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +26,11 @@ import android.widget.Toast;
 
 import com.example.mrpython.elsreen.module.game.Data.GameBase;
 import com.example.mrpython.elsreen.module.game.Data.Player;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -28,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout lnGetName;
     GameBase gameBase;
     public BroadcastReceiver lockScreenReceiver = null;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference myRef ;
+    private Button btnLearningMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +51,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         assignView();
         loadData();
+        this.initFirebase();
 //        _registerBroadCast();
 //        startService(new Intent(this, MainService.class));
+
+        btnLearningMode = (Button) findViewById(R.id.btnLearningMode);
+        btnLearningMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnLearningMode.performLongClick();
+            }
+        });
+
+        registerForContextMenu(btnLearningMode);
     }
     private void _registerBroadCast(){
         lockScreenReceiver = new StartMyServiceReceiver();
@@ -45,13 +72,34 @@ public class MainActivity extends AppCompatActivity {
         lockFilter.addAction(Intent.ACTION_SCREEN_OFF);
         registerReceiver(lockScreenReceiver, lockFilter);
     }
+    public void initFirebase(){
+        mDatabase = FirebaseDatabase.getInstance();
+        myRef = mDatabase.getReference("TopPlayer");
+        String userId = "123";
+        myRef.child(userId).setValue("vuongpq2");
+
+        myRef.child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String name = dataSnapshot.getValue(String.class);
+                Log.d("ABC" , "value " + name);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+            }
+        });
+    }
 
     private void assignView()
     {
         btnStartLockScreen = (Button)findViewById(R.id.btnStartLockScreen);
         tvName = (TextView)findViewById(R.id.tvName);
         tvLevel = (TextView)findViewById(R.id.tvLevel);
-        gameBase = GameBase.getGameBase(this);
+        gameBase = GameBase.getGameBase(this, 0);
         txtInputName = (EditText)findViewById(R.id.txtInputName);
         lnGetName = (LinearLayout)findViewById(R.id.lnGetName);
     }
@@ -73,30 +121,6 @@ public class MainActivity extends AppCompatActivity {
             tvLevel.setText(player.getLevel() + "");
         }
     }
-
-
-
-
-    //Paste this code to lockscreen
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        if(keyCode == KeyEvent.KEYCODE_HOME)
-//        {
-////            Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        if(keyCode==KeyEvent.KEYCODE_BACK)
-//        {
-////            Toast.makeText(getApplicationContext(), "Back", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        if (keyCode == KeyEvent.KEYCODE_MENU)
-//        {
-////            Toast.makeText(getApplicationContext(), "Menu", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        return false;
-//    }
 
     public void toggleLockScreen(View view) {
         if (btnStartLockScreen.getText().toString().equals("Start"))
@@ -123,6 +147,41 @@ public class MainActivity extends AppCompatActivity {
             tvName.setVisibility(View.VISIBLE);
             btnStartLockScreen.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        getMenuInflater().inflate(R.menu.menu_context_mode, menu);
+        LayoutInflater headerInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        ViewGroup header = (ViewGroup) headerInflater.inflate(R.layout.title_mode_menu, null);
+        menu.setHeaderView(header);
+
+        // align center content item of menu
+        for (int i = 0; i < menu.size(); i++) {
+            MenuItem item = menu.getItem(i);
+            SpannableString content = new SpannableString(item.getTitle());
+            content.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_CENTER), 0, content.length(), 0);
+            item.setTitle(content);
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mnAll:
+                this.gameBase.setLearningMode(0);
+                break;
+            case R.id.mnVocabulary:
+                this.gameBase.setLearningMode(1);
+                break;
+            case R.id.mnGrammar:
+                this.gameBase.setLearningMode(2);
+                break;
+        }
+
+        return super.onContextItemSelected(item);
     }
 }
 

@@ -7,6 +7,7 @@ import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -43,16 +44,15 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
     // Logic
     private GameBase gameBase;
     private Question currentQuestion;
-    private int numberOfTrueAnswers;
-    private FirebaseDatabase mDatabase;
-    private DatabaseReference myRef ;
+    private int numberOfTrueAnswers = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_lock);
         startService(new Intent(this, MainService.class));
         this.changeBackground();
-        this.initFirebase();
+
         this.addControls();
         this.addEvents();
         this.readData();
@@ -69,26 +69,25 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         linBackground.setBackgroundResource(drawableID);
     }
 
-    public void initFirebase(){
-        mDatabase = FirebaseDatabase.getInstance();
-        myRef = mDatabase.getReference("TopPlayer");
-        String userId = "123";
-        myRef.child(userId).setValue("vuongpq2");
+    //Paste this code to lockscreen
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_HOME)
+        {
+            Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_SHORT).show();
+        }
 
-        myRef.child(userId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String name = dataSnapshot.getValue(String.class);
-                Log.d("ABC" , "value " + name);
+        if(keyCode==KeyEvent.KEYCODE_BACK)
+        {
+            Toast.makeText(getApplicationContext(), "Back", Toast.LENGTH_SHORT).show();
+        }
 
-            }
+        if (keyCode == KeyEvent.KEYCODE_MENU)
+        {
+            Toast.makeText(getApplicationContext(), "Menu", Toast.LENGTH_SHORT).show();
+        }
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-
-            }
-        });
+        return false;
     }
     public void readData(){
         String data;
@@ -128,7 +127,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         this.btnAnswerC = findViewById(R.id.btnAnswerC);
         this.btnAnswerD = findViewById(R.id.btnAnswerD);
 
-        this.gameBase =  GameBase.getGameBase(this);
+        this.gameBase =  GameBase.getGameBase(this, 0);
         this.updateGUI();
     }
     public void updateGUI(){
@@ -136,7 +135,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         this.updateQuestion();
     }
     public void updateQuestion(){
-        this.currentQuestion = this.gameBase.getRandomQuestion();
+        this.currentQuestion = this.gameBase.getRandomQuestion(2);
         this.currentQuestion.shuffleAnswer();
         this.txtQuestion.setText(String.valueOf(this.currentQuestion.getQuestion()));
         this.btnAnswerA.setText(String.valueOf(this.currentQuestion.getListAnswer().get(0)));
@@ -172,6 +171,8 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
                 break;
         }
         if(this.currentQuestion.isResult(result)){
+            numberOfTrueAnswers ++;
+            gameBase.expUp(numberOfTrueAnswers);
             finish();
         }else{
             numberOfTrueAnswers = 0;
