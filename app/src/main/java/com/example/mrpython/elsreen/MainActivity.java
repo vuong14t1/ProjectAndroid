@@ -34,6 +34,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
     Button btnStartLockScreen;
     TextView tvName, tvLevel;
@@ -52,8 +55,6 @@ public class MainActivity extends AppCompatActivity {
         assignView();
         loadData();
         this.initFirebase();
-//        _registerBroadCast();
-//        startService(new Intent(this, MainService.class));
 
         btnLearningMode = (Button) findViewById(R.id.btnLearningMode);
         btnLearningMode.setOnClickListener(new View.OnClickListener() {
@@ -65,33 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
         registerForContextMenu(btnLearningMode);
     }
-    private void _registerBroadCast(){
-        lockScreenReceiver = new StartMyServiceReceiver();
-        IntentFilter lockFilter = new IntentFilter();
-        lockFilter.addAction(Intent.ACTION_SCREEN_ON);
-        lockFilter.addAction(Intent.ACTION_SCREEN_OFF);
-        registerReceiver(lockScreenReceiver, lockFilter);
-    }
+
     public void initFirebase(){
         mDatabase = FirebaseDatabase.getInstance();
         myRef = mDatabase.getReference("TopPlayer");
-        String userId = "123";
-        myRef.child(userId).setValue("vuongpq2");
 
-        myRef.child(userId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String name = dataSnapshot.getValue(String.class);
-                Log.d("ABC" , "value " + name);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-
-            }
-        });
     }
 
     private void assignView()
@@ -127,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
         {
             gameBase.getPlayer().saveData();
             btnStartLockScreen.setText("Stop");
+            //luu info detal len firebase
+            sendSaveInfoPlayer();
             startService(new Intent(MainActivity.this, MainService.class));
             System.exit(0);
         }
@@ -136,7 +117,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
+    public void sendSaveInfoPlayer(){
+        myRef.child(gameBase.getPlayer().getId()).setValue(gameBase.getPlayer());
+    }
     public void setName(View view) {
         String name = txtInputName.getText().toString();
         if (!name.isEmpty())

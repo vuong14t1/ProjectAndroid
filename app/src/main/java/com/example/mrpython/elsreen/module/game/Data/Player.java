@@ -3,6 +3,8 @@ package com.example.mrpython.elsreen.module.game.Data;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.Random;
+
 /**
  * Created by vuong on 3/25/2018.
  */
@@ -19,10 +21,18 @@ public class Player {
         scores = 0;
         level = 1;
         curExp = 0;
-        id = "1";
+        Random rand =  new Random();
+        int randomMode = rand.nextInt(1000000) + 1;
+        id = String.valueOf(randomMode);
     }
 
     //region SET && GET
+    public void setId(String id){
+        this.id = id;
+    }
+    public String getId(){
+        return this.id;
+    }
     public void setName(String uName) {
         if(uName == null) return;
         this.uName = uName;
@@ -81,7 +91,8 @@ public class Player {
 
     }
 
-    public void setData(String uName, long scores, int level, long curExp) {
+    public void setData(String id, String uName, long scores, int level, long curExp) {
+        this.setId(id);
         this.setName(uName);
         this.setScores(scores);
         this.setLevel(level);
@@ -92,8 +103,8 @@ public class Player {
     public void loadData()
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences("gameData", Context.MODE_PRIVATE);
-
-        this.uName = sharedPreferences.getString("name", "");
+        this.id = sharedPreferences.getString("id", "-1");
+        this.uName = sharedPreferences.getString("name", "Player");
         this.level = sharedPreferences.getInt("level", 1);
         this.curExp = sharedPreferences.getLong("exp", 0);
         long scores = 100;
@@ -103,9 +114,15 @@ public class Player {
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences("gameData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("id", this.getId());
         editor.putString("name", this.uName);
         editor.putInt("level", this.level);
         editor.putLong("exp", this.curExp);
         editor.apply();
+    }
+
+    @Override
+    public String toString() {
+        return uName ;
     }
 }

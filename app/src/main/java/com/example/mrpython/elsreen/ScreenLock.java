@@ -30,6 +30,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class ScreenLock extends AppCompatActivity implements View.OnClickListener {
@@ -40,7 +42,8 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
     private Random random;
     private Resources res;
     private TypedArray listBackgrounds;
-
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference myRef ;
     // Logic
     private GameBase gameBase;
     private Question currentQuestion;
@@ -52,10 +55,21 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_screen_lock);
         startService(new Intent(this, MainService.class));
         this.changeBackground();
-
+        this.initFirebase();
         this.addControls();
         this.addEvents();
         this.readData();
+    }
+    public void initFirebase(){
+        mDatabase = FirebaseDatabase.getInstance();
+        myRef = mDatabase.getReference("TopPlayer");
+        /*String userId = "234";
+        Player p = new Player(this);
+        p.setData(userId,"Vuong", 123,1,2);
+        Map newUserData = new HashMap();
+        newUserData.put("scores", 4444);
+        myRef.child("234").updateChildren(newUserData);*/
+
     }
 
     public void changeBackground() {
@@ -66,7 +80,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
 
         int randomInt = random.nextInt(listBackgrounds.length());
         int drawableID = listBackgrounds.getResourceId(randomInt, 1);
-        linBackground.setBackgroundResource(drawableID);
+//        linBackground.setBackgroundResource(drawableID);
     }
 
     //Paste this code to lockscreen
@@ -173,6 +187,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         if(this.currentQuestion.isResult(result)){
             numberOfTrueAnswers ++;
             gameBase.expUp(numberOfTrueAnswers);
+            sendCorrectAnswers();
             finish();
         }else{
             numberOfTrueAnswers = 0;
@@ -180,7 +195,14 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
             updateQuestion();
         }
     }
-
+    //update info len firebase moi khi tra loi dung
+    public void sendCorrectAnswers(){
+        Map newUserData = new HashMap();
+        newUserData.put("scores", gameBase.getPlayer().getScores());
+        newUserData.put("exp", gameBase.getPlayer().getCurExp());
+        newUserData.put("level", gameBase.getPlayer().getLevel());
+        myRef.child(gameBase.getPlayer().getId()).updateChildren(newUserData);
+    }
     @Override
     public void onClick(View view) {
         processCheck(view.getId());
