@@ -15,4 +15,5 @@
     <color name="button_press">#6430d974</color>
     <color name="button_press_border">#30d974</color>
     <color name="button_default">#73335287</color>
+    <color name="button_pink">#f509d6</color>
 </resources>

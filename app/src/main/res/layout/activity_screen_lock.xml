@@ -113,12 +113,14 @@
             android:textStyle="italic" />
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="match_parent"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        app:srcCompat="@drawable/button_custom" />
+        android:id="@+id/btnSOS"
+        android:text="SOS"
+        android:background="@color/button_pink"
+        android:onClick="onSOSClick"
+        />
 
 
 </LinearLayout>

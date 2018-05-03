@@ -1,7 +1,10 @@
 package com.example.mrpython.elsreen;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Message;
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     EditText txtInputName;
     LinearLayout lnGetName;
     GameBase gameBase;
+    Player player;
     public BroadcastReceiver lockScreenReceiver = null;
     private FirebaseDatabase mDatabase;
     private DatabaseReference myRef ;
@@ -81,16 +85,16 @@ public class MainActivity extends AppCompatActivity {
         tvName = (TextView)findViewById(R.id.tvName);
         tvLevel = (TextView)findViewById(R.id.tvLevel);
         gameBase = GameBase.getGameBase(this, 0);
+        player = gameBase.getPlayer();
         txtInputName = (EditText)findViewById(R.id.txtInputName);
         lnGetName = (LinearLayout)findViewById(R.id.lnGetName);
     }
 
     private void loadData()
     {
-        Player player = gameBase.getPlayer();
         player.loadData();
 
-        if (player.getName().equals(""))
+        if (player.getName().equals("Player"))
         {
             lnGetName.setVisibility(View.VISIBLE);
             tvName.setVisibility(View.INVISIBLE);
@@ -101,13 +105,22 @@ public class MainActivity extends AppCompatActivity {
             tvName.setText(player.getName());
             tvLevel.setText(player.getLevel() + "");
         }
+
+        if (!player.getServiceStatus())
+            btnStartLockScreen.setText("Start");
+        else
+            btnStartLockScreen.setText("Stop");
+
     }
 
     public void toggleLockScreen(View view) {
-        if (btnStartLockScreen.getText().toString().equals("Start"))
+        if (!player.getServiceStatus())     //service not started
         {
-            gameBase.getPlayer().saveData();
+            player.setServiceStatus(true);
+            player.saveData();
+
             btnStartLockScreen.setText("Stop");
+
             //luu info detal len firebase
             sendSaveInfoPlayer();
             startService(new Intent(MainActivity.this, MainService.class));
@@ -115,10 +128,37 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            //disable lockscreen
+            showStopScreenDialog();
         }
 
     }
+
+    private void showStopScreenDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Disable lockscreen");
+        builder.setMessage("Are you sure?");
+        builder.setCancelable(true);
+        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                player.setServiceStatus(false);
+                player.saveData();
+                btnStartLockScreen.setText("Start");
+
+                //ungesister service
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
+
     public void sendSaveInfoPlayer(){
         myRef.child(gameBase.getPlayer().getId()).setValue(gameBase.getPlayer());
     }
