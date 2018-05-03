@@ -30,5 +30,6 @@ dependencies {
     implementation 'com.android.support:design:26.1.0'
     compile 'com.google.firebase:firebase-core:15.0.0'
 
+
 }
 apply plugin: 'com.google.gms.google-services'
