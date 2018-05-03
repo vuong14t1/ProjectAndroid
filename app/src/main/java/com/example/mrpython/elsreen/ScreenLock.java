@@ -199,7 +199,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
     public void sendCorrectAnswers(){
         Map newUserData = new HashMap();
         newUserData.put("scores", gameBase.getPlayer().getScores());
-        newUserData.put("exp", gameBase.getPlayer().getCurExp());
+        newUserData.put("curExp", gameBase.getPlayer().getCurExp());
         newUserData.put("level", gameBase.getPlayer().getLevel());
         myRef.child(gameBase.getPlayer().getId()).updateChildren(newUserData);
     }

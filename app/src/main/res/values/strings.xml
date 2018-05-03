@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">ELSreen</string>
-    <string name="facebook_app_id">636177143389470</string>
+    <string name="facebook_app_id">148243599355678</string>
     <array name="listBackgrounds">
         <item>@drawable/background</item>
         <item>@drawable/background2</item>
