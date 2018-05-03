@@ -1,5 +1,6 @@
 package com.example.mrpython.elsreen;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class TopPlayersActivity extends AppCompatActivity {
     private ListView lvTopPlayers;
@@ -42,21 +45,17 @@ public class TopPlayersActivity extends AppCompatActivity {
     public void initFirebase(){
         mDatabase = FirebaseDatabase.getInstance();
         myRef = mDatabase.getReference("TopPlayer");
-        mData.add("dfdfd");
-        mData.add("dfdfd");
-        mData.add("dfdfd");
-        mAdapter.notifyDataSetChanged();
     }
+
     public void handleGetDataPlayer(){
         Query queryRef = myRef.orderByChild("level").limitToLast(5);
-        mData = new ArrayList<>();
+
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Player p = dataSnapshot.getValue(Player.class);
                 String content = "Name : " + p.getName() + "\n" + "Level : " + p.getLevel();
-                Log.d("abc", "postTransaction:onComplete:" + content);
-                mData.add(content);
+                mData.add(0,content);
                 mAdapter.notifyDataSetChanged();
             }
 
