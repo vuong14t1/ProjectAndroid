@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         btnStartLockScreen = (Button)findViewById(R.id.btnStartLockScreen);
         tvName = (TextView)findViewById(R.id.tvName);
         tvLevel = (TextView)findViewById(R.id.tvLevel);
-        gameBase = GameBase.getGameBase(this, 0);
+        gameBase = GameBase.getGameBase(this);
         player = gameBase.getPlayer();
         txtInputName = (EditText)findViewById(R.id.txtInputName);
         lnGetName = (LinearLayout)findViewById(R.id.lnGetName);
@@ -244,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 tvMode.setText("Grammar");
                 break;
+        }
     }
       
     public void shareImage(View view) {

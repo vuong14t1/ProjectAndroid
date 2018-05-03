@@ -137,7 +137,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
 
         this.btnSOS = findViewById(R.id.btnSOS);
 
-        this.gameBase =  GameBase.getGameBase(this, 0);
+        this.gameBase =  GameBase.getGameBase(this);
         player = gameBase.getPlayer();
         this.updateGUI();
     }
