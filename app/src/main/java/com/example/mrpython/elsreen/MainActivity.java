@@ -32,6 +32,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ebanx.swipebtn.OnStateChangeListener;
+import com.ebanx.swipebtn.SwipeButton;
 import com.example.mrpython.elsreen.module.game.Data.GameBase;
 import com.example.mrpython.elsreen.module.game.Data.Player;
 import com.facebook.share.model.ShareLinkContent;
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase mDatabase;
     private DatabaseReference myRef ;
     private Button btnLearningMode;
+    private  SwipeButton btnSwiping;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         assignView();
         loadData();
         this.initFirebase();
+//        this.initSwiping();
         this.showLearningMode(this.gameBase.getLearningMode());
 
         btnLearningMode.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +88,16 @@ public class MainActivity extends AppCompatActivity {
 
         registerForContextMenu(btnLearningMode);
     }
+    public void initSwiping(){
+        btnSwiping =  (SwipeButton) findViewById(R.id.btnSwiping);
+        btnSwiping.setOnStateChangeListener(new OnStateChangeListener() {
+            @Override
+            public void onStateChange(boolean active) {
+                Log.d("abc", active + "" );
+            }
+        });
 
+    }
 
 
     public void initFirebase(){
