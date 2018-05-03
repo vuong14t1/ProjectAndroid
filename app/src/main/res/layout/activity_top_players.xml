@@ -6,16 +6,15 @@
     android:orientation="vertical"
     tools:context="com.example.mrpython.elsreen.TopPlayersActivity">
     <TextView
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Top 5 Player"
+        android:text="@string/top_player"
         android:layout_gravity="center"
         android:textAlignment="center"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/bright_green"
-        />
+        android:fontFamily="@font/playball_regular"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_top_level"
+        android:background="@color/black"/>
 
     <ListView
         android:id="@+id/lvTopPlayers"

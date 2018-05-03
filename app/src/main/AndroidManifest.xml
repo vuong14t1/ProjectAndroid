@@ -22,7 +22,8 @@
         <activity
             android:name=".ScreenLock"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -61,7 +62,9 @@
 
         <!-- <activity android:name=".ScreenLock"></activity> -->
 
-        <activity android:name=".TopPlayersActivity"></activity>
+        <activity
+            android:name=".TopPlayersActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

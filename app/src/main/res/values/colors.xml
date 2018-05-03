@@ -10,10 +10,16 @@
     <color name="blue_temp">#84e1b8</color>
     <color name="blue_dark">#047392</color>
     <color name="bright_blue">#02D8B0</color>
-    <color name="button_blue">#70073674</color>
+    <color name="button_blue">#87073674</color>
     <color name="button_blue_border">#073674</color>
     <color name="button_press">#6430d974</color>
     <color name="button_press_border">#30d974</color>
     <color name="button_default">#73335287</color>
     <color name="button_pink">#f509d6</color>
+    <color name="white">#FFF</color>
+    <color name="color_level">#f7db08</color>
+    <color name="color_name">#29d9d0</color>
+    <color name="color_number_level">#bde9ce</color>
+    <color name="black">#000</color>
+    <color name="sos_btn">#78e41313</color>
 </resources>
