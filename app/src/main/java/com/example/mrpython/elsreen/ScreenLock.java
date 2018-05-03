@@ -141,7 +141,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         this.btnAnswerC = findViewById(R.id.btnAnswerC);
         this.btnAnswerD = findViewById(R.id.btnAnswerD);
 
-        this.gameBase =  GameBase.getGameBase(this, 0);
+        this.gameBase =  GameBase.getGameBase(this);
         this.updateGUI();
     }
     public void updateGUI(){
@@ -149,7 +149,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         this.updateQuestion();
     }
     public void updateQuestion(){
-        this.currentQuestion = this.gameBase.getRandomQuestion(2);
+        this.currentQuestion = this.gameBase.getRandomQuestion(this.gameBase.getLearningMode());
         this.currentQuestion.shuffleAnswer();
         this.txtQuestion.setText(String.valueOf(this.currentQuestion.getQuestion()));
         this.btnAnswerA.setText(String.valueOf(this.currentQuestion.getListAnswer().get(0)));

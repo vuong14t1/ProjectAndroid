@@ -53,10 +53,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        android:textSize="130sp"
+        android:textSize="110sp"
         android:padding="0dp"
         android:textColor="#fda90c"/>
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mode:"
+            android:textColor="#1ff50b"
+            android:textSize="25sp"
+            android:fontFamily="@font/playball_regular"
+            android:layout_marginRight="20dp"/>
+        <TextView
+            android:id="@+id/tvMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All"
+            android:textColor="#eded09"
+            android:textSize="25sp"
+            android:fontFamily="@font/playball_regular"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
     <Button
         android:id="@+id/btnStartLockScreen"
         android:layout_width="150dp"

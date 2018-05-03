@@ -39,7 +39,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     Button btnStartLockScreen;
-    TextView tvName, tvLevel;
+    TextView tvName, tvLevel, tvMode;
     EditText txtInputName;
     LinearLayout lnGetName;
     GameBase gameBase;
@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         assignView();
         loadData();
         this.initFirebase();
+        this.showLearningMode(this.gameBase.getLearningMode());
 
-        btnLearningMode = (Button) findViewById(R.id.btnLearningMode);
         btnLearningMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,9 +80,11 @@ public class MainActivity extends AppCompatActivity {
         btnStartLockScreen = (Button)findViewById(R.id.btnStartLockScreen);
         tvName = (TextView)findViewById(R.id.tvName);
         tvLevel = (TextView)findViewById(R.id.tvLevel);
-        gameBase = GameBase.getGameBase(this, 0);
+        gameBase = GameBase.getGameBase(this);
         txtInputName = (EditText)findViewById(R.id.txtInputName);
         lnGetName = (LinearLayout)findViewById(R.id.lnGetName);
+        tvMode = (TextView)findViewById(R.id.tvMode);
+        btnLearningMode = (Button) findViewById(R.id.btnLearningMode);
     }
 
     private void loadData()
@@ -157,12 +159,15 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.mnAll:
                 this.gameBase.setLearningMode(0);
+                tvMode.setText("All");
                 break;
             case R.id.mnVocabulary:
                 this.gameBase.setLearningMode(1);
+                tvMode.setText("Vocabulary");
                 break;
             case R.id.mnGrammar:
                 this.gameBase.setLearningMode(2);
+                tvMode.setText("Grammar");
                 break;
         }
 
@@ -172,6 +177,20 @@ public class MainActivity extends AppCompatActivity {
     public void topPlayer(View view) {
         Intent intent = new Intent(MainActivity.this, TopPlayersActivity.class);
         startActivity(intent);
+    }
+
+    public void showLearningMode(int mode) {
+        switch (mode) {
+            case 0:
+                tvMode.setText("All");
+                break;
+            case 1:
+                tvMode.setText("Vocabulary");
+                break;
+            case 2:
+                tvMode.setText("Grammar");
+                break;
+        }
     }
 }
 
