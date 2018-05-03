@@ -3,7 +3,6 @@ package com.example.mrpython.elsreen;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,20 +10,14 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mrpython.elsreen.module.game.Data.GameBase;
 import com.example.mrpython.elsreen.module.game.Data.Player;
 import com.example.mrpython.elsreen.module.game.Data.Question;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,7 +30,7 @@ import java.util.Random;
 public class ScreenLock extends AppCompatActivity implements View.OnClickListener {
     // GUI
     private TextView txtName, txtLevel, txtQuestion;
-    private Button btnAnswerA, btnAnswerB, btnAnswerC, btnAnswerD;
+    private Button btnAnswerA, btnAnswerB, btnAnswerC, btnAnswerD, btnSOS;
     private LinearLayout linBackground;
     private Random random;
     private Resources res;
@@ -46,8 +39,9 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
     private DatabaseReference myRef ;
     // Logic
     private GameBase gameBase;
+    private Player player;
     private Question currentQuestion;
-    private int numberOfTrueAnswers = 0;
+    private static int numberOfTrueAnswers = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,12 +135,16 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         this.btnAnswerC = findViewById(R.id.btnAnswerC);
         this.btnAnswerD = findViewById(R.id.btnAnswerD);
 
+        this.btnSOS = findViewById(R.id.btnSOS);
+
         this.gameBase =  GameBase.getGameBase(this, 0);
+        player = gameBase.getPlayer();
         this.updateGUI();
     }
     public void updateGUI(){
         this.updateInfo();
         this.updateQuestion();
+        player.loadNumOfSOS();
     }
     public void updateQuestion(){
         this.currentQuestion = this.gameBase.getRandomQuestion(2);
@@ -158,9 +156,9 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         this.btnAnswerD.setText(String.valueOf(this.currentQuestion.getListAnswer().get(3)));
     }
     public void updateInfo(){
-        Player pl = this.gameBase.getPlayer();
-        this.txtName.setText(String.valueOf(pl.getName()));
-        this.txtLevel.setText(String.valueOf("Level : " + pl.getLevel()));
+        this.txtName.setText(String.valueOf(player.getName()));
+        this.txtLevel.setText(String.valueOf("Level : " + player.getLevel()));
+        this.btnSOS.setText("SOS(" + GameBase.numOfSOS + ")");
     }
     public void addEvents(){
         this.btnAnswerA.setOnClickListener(this);
@@ -206,5 +204,14 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
         processCheck(view.getId());
+    }
+
+    public void onSOSClick(View view) {
+        if (GameBase.numOfSOS > 0)
+        {
+            GameBase.numOfSOS--;
+            player.saveNumOfSOS();
+            finish();
+        }
     }
 }

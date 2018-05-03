@@ -39,6 +39,7 @@ public class MainService extends Service {
     public void onDestroy() {
         unregisterReceiver(lockScreenReceiver);
         super.onDestroy();
-
     }
+
+
 }

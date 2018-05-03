@@ -16,6 +16,8 @@ public class Player {
     private long curExp;
     private Context context;
     private String id;
+    private Boolean serviceStatus;  // true = started, false = not started
+
     public  Player(Context context){
         this.context = context;
         scores = 0;
@@ -54,6 +56,11 @@ public class Player {
         this.curExp = curExp;
     }
 
+    public void setServiceStatus(boolean status)
+    {
+        this.serviceStatus = status;
+    }
+
     public void setContext(Context context)
     {
         this.context = context;
@@ -72,6 +79,10 @@ public class Player {
     }
     public long getCurExp() {
         return this.curExp;
+    }
+    public boolean getServiceStatus()
+    {
+        return this.serviceStatus;
     }
     // endregion
 
@@ -112,6 +123,21 @@ public class Player {
         this.uName = sharedPreferences.getString("name", "Player");
         this.level = sharedPreferences.getInt("level", 1);
         this.curExp = sharedPreferences.getLong("exp", 0);
+        this.serviceStatus = sharedPreferences.getBoolean("serviceStatus", false);
+        GameBase.numOfSOS = sharedPreferences.getInt("sos", 3);
+    }
+
+    public void loadNumOfSOS()
+    {   SharedPreferences sharedPreferences = context.getSharedPreferences("gameData", Context.MODE_PRIVATE);
+        GameBase.numOfSOS = sharedPreferences.getInt("SOS", 3);
+    }
+
+    public void saveNumOfSOS()
+    {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("gameData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("SOS", GameBase.numOfSOS);
+        editor.apply();
     }
 
     public void saveData()
@@ -122,6 +148,7 @@ public class Player {
         editor.putString("name", this.uName);
         editor.putInt("level", this.level);
         editor.putLong("exp", this.curExp);
+        editor.putBoolean("serviceStatus", this.serviceStatus);
         editor.apply();
     }
 

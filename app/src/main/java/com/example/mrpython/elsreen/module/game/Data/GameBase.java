@@ -3,7 +3,6 @@ package com.example.mrpython.elsreen.module.game.Data;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.mrpython.elsreen.MainActivity;
 import com.example.mrpython.elsreen.R;
 
 import org.json.JSONArray;
@@ -30,6 +29,7 @@ public class GameBase {
     private int resourceVocabularyId = R.raw.vocabulary;
     private static GameBase gameBase;
     private int learningMode;
+    public static int numOfSOS;
 
     public GameBase(Context context,int  mode) {
         this.setContext(context);
@@ -154,12 +154,23 @@ public class GameBase {
     {
         int point;
         if (numberOfTrueAnswers < 3)
+        {
             point = 4;
+        }
         else
+        {
+            numOfSOS++;
+            player.saveNumOfSOS();
+
             if (numberOfTrueAnswers < 5)
+            {
                 point = 2;
+
+            }
             else
                 point = 3;
+        }
+
         player.setCurExp(player.getCurExp() + point);
 
         checkLevelUp();
