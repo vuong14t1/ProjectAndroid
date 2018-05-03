@@ -74,7 +74,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
 
         int randomInt = random.nextInt(listBackgrounds.length());
         int drawableID = listBackgrounds.getResourceId(randomInt, 1);
-//        linBackground.setBackgroundResource(drawableID);
+        linBackground.setBackgroundResource(drawableID);
     }
 
     //Paste this code to lockscreen

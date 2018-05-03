@@ -1,8 +1,17 @@
 <resources>
     <string name="app_name">ELSreen</string>
     <string name="facebook_app_id">148243599355678</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="ok">Ok</string>
+    <string name="level">Level</string>
+    <string name="top_level">Top Level</string>
+    <string name="share_level">Share Level</string>
+    <string name="start">Start</string>
+    <string name="learning_mode">Learning Mode</string>
+    <string name="top_player">Top 5 Player</string>
     <array name="listBackgrounds">
         <item>@drawable/background</item>
+        <item>@drawable/background1</item>
         <item>@drawable/background2</item>
         <item>@drawable/background3</item>
         <item>@drawable/background4</item>
@@ -11,6 +20,5 @@
         <item>@drawable/background7</item>
         <item>@drawable/background8</item>
         <item>@drawable/background9</item>
-        <item>@drawable/background10</item>
     </array>
 </resources>
