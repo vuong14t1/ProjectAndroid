@@ -196,9 +196,9 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
     //update info len firebase moi khi tra loi dung
     public void sendCorrectAnswers(){
         Map newUserData = new HashMap();
-        newUserData.put("scores", player.getScores());
-        newUserData.put("exp", player.getCurExp());
-        newUserData.put("level", player.getLevel());
+        newUserData.put("scores", gameBase.getPlayer().getScores());
+        newUserData.put("curExp", gameBase.getPlayer().getCurExp());
+        newUserData.put("level", gameBase.getPlayer().getLevel());
         myRef.child(gameBase.getPlayer().getId()).updateChildren(newUserData);
     }
     @Override
