@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 btnStartLockScreen.setText("Start");
 
                 //ungesister service
+                stopService(new Intent(getBaseContext(), MainService.class));
             }
         });
         AlertDialog alertDialog = builder.create();
