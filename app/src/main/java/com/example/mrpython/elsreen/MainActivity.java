@@ -1,9 +1,13 @@
 package com.example.mrpython.elsreen;
 
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Environment;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +30,10 @@ import android.widget.Toast;
 
 import com.example.mrpython.elsreen.module.game.Data.GameBase;
 import com.example.mrpython.elsreen.module.game.Data.Player;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,8 +42,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     Button btnStartLockScreen;
@@ -172,6 +185,41 @@ public class MainActivity extends AppCompatActivity {
     public void topPlayer(View view) {
         Intent intent = new Intent(MainActivity.this, TopPlayersActivity.class);
         startActivity(intent);
+    }
+
+    public void shareImage(View view) {
+        Bitmap bitmap = takeScreenshot();
+        saveBitmap(bitmap);
+        SharePhoto photo = new SharePhoto.Builder()
+                .setBitmap(bitmap)
+                .build();
+        SharePhotoContent content = new SharePhotoContent.Builder()
+                .addPhoto(photo)
+                .build();
+        ShareDialog.show(this,content);
+
+    }
+    public Bitmap takeScreenshot() {
+        View rootView = findViewById(android.R.id.content).getRootView();
+        rootView.setDrawingCacheEnabled(true);
+        return rootView.getDrawingCache();
+    }
+    public void saveBitmap(Bitmap bitmap) {
+        Random rand = new Random();
+        String name = rand.nextInt(10000000) + "screenshot.png";
+        File imagePath = new File(Environment.getExternalStorageDirectory() + "/" + name);
+        FileOutputStream fos;
+        try {
+            fos = new FileOutputStream(imagePath);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            Toast.makeText(this, "Saved image ", Toast.LENGTH_SHORT).show();
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            Log.e("GREC", e.getMessage(), e);
+        } catch (IOException e) {
+            Log.e("GREC", e.getMessage(), e);
+        }
     }
 }
 
