@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         registerForContextMenu(btnLearningMode);
     }
 
+
+
     public void initFirebase(){
         mDatabase = FirebaseDatabase.getInstance();
         myRef = mDatabase.getReference("TopPlayer");
@@ -165,6 +167,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onContextItemSelected(item);
+    }
+
+    public void topPlayer(View view) {
+        Intent intent = new Intent(MainActivity.this, TopPlayersActivity.class);
+        startActivity(intent);
     }
 }
 

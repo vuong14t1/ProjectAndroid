@@ -22,10 +22,11 @@ public class Player {
         level = 1;
         curExp = 0;
         Random rand =  new Random();
-        int randomMode = rand.nextInt(1000000) + 1;
+        int randomMode = rand.nextInt(10000000) + 1;
         id = String.valueOf(randomMode);
     }
-
+    public Player(){
+    }
     //region SET && GET
     public void setId(String id){
         this.id = id;
@@ -103,11 +104,14 @@ public class Player {
     public void loadData()
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences("gameData", Context.MODE_PRIVATE);
-        this.id = sharedPreferences.getString("id", "-1");
+
+        String success = sharedPreferences.getString("id", "-1");
+        if(!success.equals("-1")){
+            this.id = success;
+        }
         this.uName = sharedPreferences.getString("name", "Player");
         this.level = sharedPreferences.getInt("level", 1);
         this.curExp = sharedPreferences.getLong("exp", 0);
-        long scores = 100;
     }
 
     public void saveData()

@@ -2,9 +2,11 @@ package com.example.mrpython.elsreen;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.mrpython.elsreen.module.game.Data.Player;
 import com.google.firebase.database.ChildEventListener;
@@ -29,8 +31,10 @@ public class TopPlayersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_top_players);
         this.addControls();
         initFirebase();
+        handleGetDataPlayer();
     }
     public void addControls(){
+        lvTopPlayers = findViewById(R.id.lvTopPlayers);
         mData = new ArrayList<>();
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mData);
         lvTopPlayers.setAdapter(mAdapter);
@@ -38,19 +42,22 @@ public class TopPlayersActivity extends AppCompatActivity {
     public void initFirebase(){
         mDatabase = FirebaseDatabase.getInstance();
         myRef = mDatabase.getReference("TopPlayer");
-
+        mData.add("dfdfd");
+        mData.add("dfdfd");
+        mData.add("dfdfd");
+        mAdapter.notifyDataSetChanged();
     }
     public void handleGetDataPlayer(){
-        Query queryRef = myRef.orderByChild("height");
+        Query queryRef = myRef.orderByChild("level").limitToLast(5);
         mData = new ArrayList<>();
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Player p = dataSnapshot.getValue(Player.class);
                 String content = "Name : " + p.getName() + "\n" + "Level : " + p.getLevel();
+                Log.d("abc", "postTransaction:onComplete:" + content);
                 mData.add(content);
                 mAdapter.notifyDataSetChanged();
-
             }
 
             @Override
