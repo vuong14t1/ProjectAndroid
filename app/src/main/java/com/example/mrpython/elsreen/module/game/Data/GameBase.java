@@ -2,6 +2,7 @@ package com.example.mrpython.elsreen.module.game.Data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import com.example.mrpython.elsreen.R;
 
@@ -31,19 +32,18 @@ public class GameBase {
     private int learningMode;
     public static int numOfSOS;
 
-    public GameBase(Context context,int  mode) {
+    public GameBase(Context context) {
         this.setContext(context);
-        this.setLearningMode(mode);
         this.player = new Player(context);
         this.listQuestionGrammar = new ArrayList<>();
         this.listQuestionVocabulary = new ArrayList<>();
         this.setData();
     }
 
-    public static GameBase getGameBase(Context context, int mode)
+    public static GameBase getGameBase(Context context)
     {
         if (gameBase  == null)
-            gameBase = new GameBase(context, mode);
+            gameBase = new GameBase(context);
         else
             gameBase.setContext(context);
         return gameBase;
@@ -59,6 +59,7 @@ public class GameBase {
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("learningMode", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
         editor.putInt("mode", this.learningMode);
         editor.apply();
     }
@@ -66,7 +67,6 @@ public class GameBase {
     public int getLearningMode() {
         SharedPreferences sharedPreferences = context.getSharedPreferences("learningMode", Context.MODE_PRIVATE);
         this.learningMode = sharedPreferences.getInt("mode", 0);
-
         return this.learningMode;
     }
 

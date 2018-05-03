@@ -56,7 +56,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     Button btnStartLockScreen;
-    TextView tvName, tvLevel;
+    TextView tvName, tvLevel, tvMode;
     EditText txtInputName;
     LinearLayout lnGetName;
     GameBase gameBase;
@@ -73,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
         assignView();
         loadData();
         this.initFirebase();
+        this.showLearningMode(this.gameBase.getLearningMode());
 
-        btnLearningMode = (Button) findViewById(R.id.btnLearningMode);
         btnLearningMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
         player = gameBase.getPlayer();
         txtInputName = (EditText)findViewById(R.id.txtInputName);
         lnGetName = (LinearLayout)findViewById(R.id.lnGetName);
+        tvMode = (TextView)findViewById(R.id.tvMode);
+        btnLearningMode = (Button) findViewById(R.id.btnLearningMode);
     }
 
     private void loadData()
@@ -211,12 +213,15 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.mnAll:
                 this.gameBase.setLearningMode(0);
+                tvMode.setText("All");
                 break;
             case R.id.mnVocabulary:
                 this.gameBase.setLearningMode(1);
+                tvMode.setText("Vocabulary");
                 break;
             case R.id.mnGrammar:
                 this.gameBase.setLearningMode(2);
+                tvMode.setText("Grammar");
                 break;
         }
 
@@ -228,6 +233,19 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void showLearningMode(int mode) {
+        switch (mode) {
+            case 0:
+                tvMode.setText("All");
+                break;
+            case 1:
+                tvMode.setText("Vocabulary");
+                break;
+            case 2:
+                tvMode.setText("Grammar");
+                break;
+    }
+      
     public void shareImage(View view) {
         Bitmap bitmap = takeScreenshot();
         saveBitmap(bitmap);

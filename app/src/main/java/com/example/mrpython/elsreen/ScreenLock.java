@@ -147,7 +147,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         player.loadNumOfSOS();
     }
     public void updateQuestion(){
-        this.currentQuestion = this.gameBase.getRandomQuestion(2);
+        this.currentQuestion = this.gameBase.getRandomQuestion(this.gameBase.getLearningMode());
         this.currentQuestion.shuffleAnswer();
         this.txtQuestion.setText(String.valueOf(this.currentQuestion.getQuestion()));
         this.btnAnswerA.setText(String.valueOf(this.currentQuestion.getListAnswer().get(0)));
