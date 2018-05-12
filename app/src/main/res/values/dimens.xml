@@ -3,6 +3,7 @@
     <dimen name="name_text_size">55sp</dimen>
     <dimen name="name_text_size_main">45sp</dimen>
     <dimen name="level_text_size">30sp</dimen>
+    <dimen name="sos_text_size">15sp</dimen>
     <dimen name="level_text_size_main">20sp</dimen>
     <dimen name="level_margin_vertical">6dp</dimen>
     <dimen name="question_margin_vertical">15dp</dimen>
@@ -24,4 +25,6 @@
     <dimen name="level_text_size_number">140dp</dimen>
     <dimen name="with_btn_action">150dp</dimen>
     <dimen name="text_size_top_level">40sp</dimen>
+    <dimen name="button_swipe_padding">18sp</dimen>
+
 </resources>

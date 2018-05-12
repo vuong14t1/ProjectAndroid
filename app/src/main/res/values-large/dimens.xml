@@ -4,6 +4,7 @@
     <dimen name="name_text_size_main">55sp</dimen>
     <dimen name="level_text_size">50sp</dimen>
     <dimen name="level_text_size_main">30sp</dimen>
+    <dimen name="sos_text_size">20sp</dimen>
     <dimen name="level_margin_vertical">6dp</dimen>
     <dimen name="question_margin_vertical">15dp</dimen>
     <dimen name="question_padding_left">5dp</dimen>
