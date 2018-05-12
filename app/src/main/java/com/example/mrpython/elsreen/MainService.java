@@ -40,6 +40,4 @@ public class MainService extends Service {
         unregisterReceiver(lockScreenReceiver);
         super.onDestroy();
     }
-
-
 }

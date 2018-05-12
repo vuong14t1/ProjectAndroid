@@ -12,8 +12,8 @@
     <color name="bright_blue">#02D8B0</color>
     <color name="button_blue">#87073674</color>
     <color name="button_blue_border">#073674</color>
-    <color name="button_press">#6430d974</color>
-    <color name="button_press_border">#30d974</color>
+    <color name="button_press">#8e2994ff</color>
+    <color name="button_press_border">#2448ff</color>
     <color name="button_default">#73335287</color>
     <color name="button_pink">#f509d6</color>
     <color name="white">#FFF</color>

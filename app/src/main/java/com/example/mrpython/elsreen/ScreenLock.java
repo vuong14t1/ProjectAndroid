@@ -3,6 +3,7 @@ package com.example.mrpython.elsreen;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -150,9 +151,13 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         this.currentQuestion = this.gameBase.getRandomQuestion(this.gameBase.getLearningMode());
         this.currentQuestion.shuffleAnswer();
         this.txtQuestion.setText(String.valueOf(this.currentQuestion.getQuestion()));
+        this.btnAnswerA.setBackgroundResource(R.drawable.button_custom);
         this.btnAnswerA.setText(String.valueOf(this.currentQuestion.getListAnswer().get(0)));
+        this.btnAnswerB.setBackgroundResource(R.drawable.button_custom);
         this.btnAnswerB.setText(String.valueOf(this.currentQuestion.getListAnswer().get(1)));
+        this.btnAnswerC.setBackgroundResource(R.drawable.button_custom);
         this.btnAnswerC.setText(String.valueOf(this.currentQuestion.getListAnswer().get(2)));
+        this.btnAnswerD.setBackgroundResource(R.drawable.button_custom);
         this.btnAnswerD.setText(String.valueOf(this.currentQuestion.getListAnswer().get(3)));
     }
     public void updateInfo(){
@@ -167,30 +172,59 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         this.btnAnswerD.setOnClickListener(this);
     }
     public void processCheck(int id){
-        String result = "";
-        switch (id){
-            case R.id.btnAnswerA:
-                result = btnAnswerA.getText().toString();
-                break;
-            case R.id.btnAnswerB:
-                result = btnAnswerB.getText().toString();
-                break;
-            case R.id.btnAnswerC:
-                result = btnAnswerC.getText().toString();
-                break;
-            case R.id.btnAnswerD:
-                result = btnAnswerD.getText().toString();
-                break;
+        final Button btnResult = (Button) findViewById(id);
+        String rs = btnResult.getText().toString();
+        String answer = currentQuestion.getResult();
+
+        if (answer.equals(btnAnswerA.getText().toString())) {
+            btnAnswerA.setBackgroundResource(R.drawable.correct_button);
+        } else if (answer.equals(btnAnswerB.getText().toString())) {
+            btnAnswerB.setBackgroundResource(R.drawable.correct_button);
+        }else if (answer.equals(btnAnswerC.getText().toString())) {
+            btnAnswerC.setBackgroundResource(R.drawable.correct_button);
+        } else {
+            btnAnswerD.setBackgroundResource(R.drawable.correct_button);
         }
-        if(this.currentQuestion.isResult(result)){
+
+        if (!currentQuestion.isResult(rs)) {
+            final Thread refreshGUI = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        ScreenLock.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                numberOfTrueAnswers = 0;
+                                updateGUI();
+                            }
+                        });
+                    } catch (Exception e) {
+                    }
+                }
+            };
+            Thread refreshThread = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        ScreenLock.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                btnResult.setBackgroundResource(R.drawable.button_error);
+                            }
+                        });
+                        Thread.sleep(700);
+                        refreshGUI.start();
+                    } catch (InterruptedException e) {
+                    }
+                }
+            };
+            boolean check = true;
+            refreshThread.start();
+        } else {
             numberOfTrueAnswers ++;
             gameBase.expUp(numberOfTrueAnswers);
             sendCorrectAnswers();
             finish();
-        }else{
-            numberOfTrueAnswers = 0;
-            Toast.makeText(this, "Ban da tra loi sai", Toast.LENGTH_SHORT).show();
-            updateQuestion();
         }
     }
     //update info len firebase moi khi tra loi dung
@@ -204,6 +238,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
         processCheck(view.getId());
+
     }
 
     public void onSOSClick(View view) {
