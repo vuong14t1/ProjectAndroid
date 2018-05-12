@@ -1,222 +1,362 @@
 [
   {
     "id": 1,
-    "content" : "The rabbit is an animal ___ only eats plants and vegetables.",
+    "content" : "If I were you, I ___ request a raise.",
     "answers": [
-      "who",
-      "whose",
-      "whom",
-      "that"
+      "would have",
+      "could have",
+      "might have",
+      "would"
     ],
-    "result": "that"
+    "result": "would",
+    "explain": "IF + S + V2 (Nếu là BE thì dùng WERE cho tất cả các ngôi), S + WOULD/ COULD/ SHOULD… + V_INF"
   },
   {
     "id": 2,
-    "content" : "They needed to practice ___ the ball.",
+    "content" : "The report suggested that the company establish a training program and ___ a mentor system.",
     "answers": [
-      "catch",
-      "catching",
-      "catches",
-      "caught"
+      "set out",
+      "to set up",
+      "setting up",
+      "set up"
     ],
-    "result": "catching"
+    "result": "set up",
+    "explain": "Suggest + that + S + (should) + V_inf: đề nghị rằng ai (nên) làm gì. Và Set up: thiết lập"
   },
   {
     "id": 3,
-    "content" : "I enjoyed ___ in the park with Jane this afternoon.",
+    "content" : "If the computer develops a virus, then it ___ a technician.",
     "answers": [
-      "walk",
-      "walking",
-      "to walk",
-      "to walking"
+      "need",
+      "needs",
+      "would have needed",
+      "needed"
     ],
-    "result": "walking"
+    "result": "needs",
+    "explain": "Câu điều kiện loại O: IF + S + HIỆN TẠI ĐƠN, S + HIỆN TẠI ĐƠN"
   },
   {
     "id": 4,
-    "content" : "I'm looking forward __ her tomorrow.",
+    "content" : "Customers these days are __ demanding than in the past.",
     "answers": [
-      "to seeing",
-      "to see",
-      "seeing",
-      "see"
+      "too",
+      "much",
+      "more",
+      "so"
     ],
-    "result": "to seeing"
+    "result": "more",
+    "explain": "Xuất hiện than  so sánh hơn  chọn more"
   },
   {
     "id": 5,
-    "content" : "We ___ to inform you that the position has been filled.",
+    "content" : "___ the graphic designer call tell him I’m tied up today and that I will call him tomorrow.",
     "answers": [
-      "sorry",
-      "apology",
-      "apologize",
-      "regret"
+      "If",
+      "Should",
+      "Provided",
+      "Unless"
     ],
-    "result": "regret"
+    "result": "Should",
+    "explain": "Đây là dạng đảo ngữ của câu điều kiện loại 1  Nếu trong câu có 'should' ở mệnh đề if, thì đảo 'should' lên đầu câu."
   },
   {
     "id": 6,
-    "content" : "He ___ decided to quit his job and look for another one.",
+    "content" : "The new loading dock for incoming delivery trucks plans ___ by the end of the month.",
     "answers": [
-      "belated",
-      "last",
-      "finally",
-      "delayed"
+      "opened",
+      "open",
+      "to open",
+      "opening"
     ],
-    "result": "finally"
+    "result": "to open",
+    "explain": "Cấu trúc plan to V_inf: dự định làm gì, lên kết hoạch làm gì"
   },
   {
     "id": 7,
-    "content" : "She forced him ___ the work.",
+    "content" : "The director got the secretary ___ all prospective clients and inform them of the company’s new products and services.",
     "answers": [
-      "does",
-      "to do",
-      "doing",
-      "will do"
+      "contact",
+      "contacted",
+      "to be contacting",
+      "to contact"
     ],
-    "result": "doing"
+    "result": "to contact",
+    "explain": "Cấu trúc Get + somebody + to V_inf: nhờ vả ai làm gì"
   },
   {
     "id": 8,
-    "content" : "If only we ___ more time, we could have seen more of the country.",
+    "content" : "The CEO dicided to unveil the company’s new products in an elaborate ceremony broadcast on TV ___ the Internet.",
     "answers": [
-      "had had",
-      "had",
-      "have had",
-      "would have had"
+      "and",
+      "as well",
+      "but",
+      "or"
     ],
-    "result": "had had"
+    "result": "and",
+    "explain": "and được sử dụng như là từ nối giữa 2 cụm 'on TV' và 'the Internet'"
   },
   {
     "id": 9,
-    "content" : "When I was a child, summer ___ be warmer and winter colder than now.",
+    "content" : "___ Tom nor his brother helps in the housework.",
     "answers": [
-      "used to",
-      "would",
-      "are used to",
-      "will"
+      "Not",
+      "Either",
+      "Neither",
+      "None"
     ],
-    "result": "used to"
+    "result": "Neither",
+    "explain": "Neither ... nor: không cái này hoặc cái kia"
   },
   {
     "id": 10,
-    "content" : "You had better ___ what you think.",
+    "content" : "Jack got into trouble when he refused ___ his briefcase for the customs officer.",
     "answers": [
-      "not say",
-      "not to say",
-      "not saying",
-      "not said"
+      "being open",
+      "to open",
+      "to be open",
+      "open"
     ],
-    "result": "not say"
+    "result": "to open",
+    "explain": "Refuse + to do sth: Từ chối làm gì đó/ không làm gì đó"
   },
   {
     "id": 11,
-    "content" : "___ being an accountant, she never seems to have any money.",
+    "content" : "I’m sorry I never graduated. I’ve always regretted not ___ college.",
     "answers": [
-      "In spite",
-      "Although",
-      "Despite",
-      "Though"
+      "to finish",
+      "finish",
+      "having finished",
+      "finishes"
     ],
-    "result": "Despite"
+    "result": "having finished",
+    "explain": "Regret + V-ing: tiếc đã không làm gì đó"
   },
   {
     "id": 12,
-    "content" : "Both are informative articles, but this one is ___.",
+    "content" : "Anne is ___ young to watch horrible films.",
     "answers": [
-      "best",
-      "the best",
-      "most",
-      "better"
+      "so",
+      "too",
+      "such",
+      "enough"
     ],
-    "result": "better"
+    "result": "too",
+    "explain": "S1 + to be + too + adj + to + V_bare : quá ... để không thể"
   },
   {
     "id": 13,
-    "content" : "She ___ English for 5 years before she visited Canada.",
+    "content" : "___ the people who saw the exhibition thought it was marvelous.",
     "answers": [
-      "studied",
-      "had been studying",
-      "has studied",
-      "has been studying"
+      "Most",
+      "All",
+      "Every",
+      "Each"
     ],
-    "result": "had been studying"
+    "result": "All",
+    "explain": "All + the + plural noun = all of the/ these/ my/ your +plural noun + plural verb"
   },
   {
     "id": 14,
-    "content" : "If I ___ you, I ___ my facts before I wrote that letter.",
+    "content" : "I’ll remember ___ him about the fair when I see him.",
     "answers": [
-      "am - will check",
-      "were - would check",
-      "had been you - would check",
-      "were - would have checked"
+      "tell",
+      "to tell",
+      "telling",
+      "being told"
     ],
-    "result": "were - would have checked"
+    "result": "to tell",
+    "explain": "Remember + to-inf: nhớ để làm gì đó"
   },
   {
     "id": 15,
-    "content" : "The first indoor mall which ___ in 1965 in the United States is in Minnesota.",
+    "content" : "My father enjoyed ___ stories.",
     "answers": [
-      "built",
-      "had built",
-      "was built",
-      "were built"
+      "telling",
+      "to be told",
+      "to tell",
+      "tell"
     ],
-    "result": "was built"
+    "result": "telling",
+    "explain": "Enjoy + V-ing: thích làm gì đó"
   },
   {
     "id": 16,
-    "content" : "They are ___ friendly people ___ everyone likes them.",
+    "content" : "About 15.000 years ago, northern Wisconsin ___ under ice a mile deep.",
     "answers": [
-      "so....that",
-      "such....that",
-      "such a....that",
-      "as....as"
+      "was buried",
+      "buried",
+      "was burring",
+      "has been buried"
     ],
-    "result": "such....that"
+    "result": "was buried",
+    "explain": "Quá khứ đơn(bị động): S + was/ were + Vpp"
   },
   {
     "id": 17,
-    "content" : "___ to leave early, he sat close to the door.",
+    "content" : "___ you hand me that pair of scissors, please?",
     "answers": [
-      "Want",
-      "Wanting",
-      "Wanted",
-      "To Want"
+      "May",
+      "Will",
+      "Do",
+      "Should"
     ],
-    "result": "Wanting"
+    "result": "Will",
+    "explain": "Will + S +V-inf?: thể hiện sự nhờ cậy ai đó"
   },
   {
     "id": 18,
-    "content" : "___ loudly, all the boys got hoarse.",
+    "content" : "The mouse family avoided ___ by coming out only when the house was empty and the two cats were outside.",
     "answers": [
-      "Shout",
-      "Shouting",
-      "Shouted",
-      "To shout"
+      "catching",
+      "to be catch",
+      "being caught",
+      "caught"
     ],
-    "result": "Shouted"
+    "result": "being caught",
+    "explain": "Avoid + V-ing: chuyển qua bị động: Avoid + being + Vpp"
   },
   {
     "id": 19,
-    "content" : "The director is not as particular about the project ___ he used to be.",
+    "content" : "Burning coal and oil will release gases ___ to humans.",
     "answers": [
-      "so",
-      "than",
-      "as",
-      "that"
+      "serious",
+      "dirty",
+      "harmful",
+      "polluted"
     ],
-    "result": "as"
+    "result": "harmful",
+    "explain": "Harmful + to: có hại đối với gì đó"
   },
   {
     "id": 20,
-    "content" : "Of the two games, no one thought the previous one was ___ exciting game.",
+    "content" : "The boxes ___ packed by the time we arrived.",
     "answers": [
-      "more",
-      "the best",
-      "most",
-      "the more"
+      "had not",
+      "had not been",
+      "were not being",
+      "was"
     ],
-    "result": "more"
+    "result": "had not been",
+    "explain": "Cấu trúc bị động của quá khứ hoàn thành: S + had + been + Vpp"
+  },
+  {
+    "id": 21,
+    "content" : "He ___ write to me once a week but he doesn’t write anymore.",
+    "answers": [
+      "use to",
+      "uses to",
+      "used to",
+      "using to"
+    ],
+    "result": "used to",
+    "explain": "Used to +V-inf: (đã từng) dùng để chỉ 1 việc/ thói quen từng làm trong quá khứ nhưng bây giờ không còn nữa"
+  },
+  {
+    "id": 22,
+    "content" : "The plants died because we ___ to water them.",
+    "answers": [
+      "forget",
+      "forgot",
+      "have forgot",
+      "have forgotten"
+    ],
+    "result": "forgot",
+    "explain": "Hành động xảy ra trong quá khứ, ta dùng thì quá khứ đơn"
+  },
+  {
+    "id": 23,
+    "content" : "They paid Peter $400 as ___ special bonus.",
+    "answers": [
+      "a",
+      "an",
+      "some",
+      "the"
+    ],
+    "result": "a",
+    "explain": "Chúng ta sử dụng a/an đối với danh tù đếm được ở số ít và khi nói chung chung về một vật nào đó không cụ thể."
+  },
+  {
+    "id": 24,
+    "content" : "The Browns are traveling to London ___ train.",
+    "answers": [
+      "on",
+      "through",
+      "by",
+      "in"
+    ],
+    "result": "by",
+    "explain": "Chúng ta dùng by + phương tiện đi lai"
+  },
+  {
+    "id": 25,
+    "content" : "I’m looking for ___ job. Did Mary get ___ job she applied for?",
+    "answers": [
+      "a - the",
+      "the - a",
+      "a - a",
+      "the - the"
+    ],
+    "result": "a - the",
+    "explain": "Chúng ta sử dụng the để chỉ danh từ cụ thể đã được đề cập đến hoặc cả người nói và người nghe đều biết."
+  },
+  {
+    "id": 26,
+    "content" : "I smell something ___ when I went past that house.",
+    "answers": [
+      "burn",
+      "to burn",
+      "to burning",
+      "burning"
+    ],
+    "result": "burning",
+    "explain": "Đối với một số động từ chỉ về giác quan ta có cấu trúc: V + something/ someone + V-ing"
+  },
+  {
+    "id": 27,
+    "content" : "Where have you been? I’ve been trying ___ you.",
+    "answers": [
+      "phoning",
+      "to phone",
+      "phoned",
+      "for phoning"
+    ],
+    "result": "to phone",
+    "explain": "Try + to-inf: cố gắng làm gì đó / Try + V-ing: thử làm gì đó"
+  },
+  {
+    "id": 28,
+    "content" : "She thanked ___ so kind.",
+    "answers": [
+      "us to be",
+      "that we were",
+      "our being",
+      "us for being"
+    ],
+    "result": "us for being",
+    "explain": "Cấu trúc của dộng từ THANK: Thank + someone + for + V-ing"
+  },
+  {
+    "id": 29,
+    "content" : "A dolphin ___ a porpoise in that it has a longer nose.",
+    "answers": [
+      "differs from",
+      "different",
+      "different to",
+      "different from"
+    ],
+    "result": "differs from",
+    "explain": "Động từ differ: A + Differ + from + B = A + be different + from + B"
+  },
+  {
+    "id": 30,
+    "content" : "It is no use ___ to him. He never answers letters.",
+    "answers": [
+      "to write",
+      "writing",
+      "write",
+      "written"
+    ],
+    "result": "writing",
+    "explain": "It is no use + V-ing : không có ích gì"
   }
 ]

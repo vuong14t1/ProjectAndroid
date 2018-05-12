@@ -126,8 +126,10 @@ public class GameBase {
             }
 
             String result = jsonData.getString("result");
+
+            String explain = jsonData.getString("explain");
             Question question = new Question();
-            question.setData(content, result, answers);
+            question.setData(content, result, answers, explain);
 
             listQuestion.add(question);
         }

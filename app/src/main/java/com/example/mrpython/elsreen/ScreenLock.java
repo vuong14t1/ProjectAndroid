@@ -1,14 +1,18 @@
 package com.example.mrpython.elsreen;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -46,6 +50,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
     private Player player;
     private Question currentQuestion;
     private static int numberOfTrueAnswers = 0;
+    boolean isPressButton = false;  //Button khi show dialog Giải thích
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -202,6 +207,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         }
 
         if (!currentQuestion.isResult(rs)) {
+
             final Thread refreshGUI = new Thread() {
                 @Override
                 public void run() {
@@ -210,7 +216,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
                             @Override
                             public void run() {
                                 numberOfTrueAnswers = 0;
-                                updateGUI();
+
                             }
                         });
                     } catch (Exception e) {
@@ -227,7 +233,8 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
                                 btnResult.setBackgroundResource(R.drawable.button_error);
                             }
                         });
-                        Thread.sleep(700);
+                        Thread.sleep(2000);
+
                         refreshGUI.start();
                     } catch (InterruptedException e) {
                     }
@@ -235,6 +242,8 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
             };
             boolean check = true;
             refreshThread.start();
+            showExplain(currentQuestion.getExplain());
+
         } else {
             numberOfTrueAnswers ++;
             gameBase.expUp(numberOfTrueAnswers);
@@ -263,5 +272,40 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
             player.saveNumOfSOS();
             finish();
         }
+    }
+
+    public void showExplain(String explain){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Giải thích");
+        builder.setMessage(explain);
+        builder.setCancelable(true);
+        builder.setNegativeButton("Đã hiểu", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                isPressButton = true;
+                updateGUI();
+                dialogInterface.dismiss();
+            }
+        });
+        final AlertDialog alertDialog = builder.create();
+
+        WindowManager.LayoutParams wmlp = alertDialog.getWindow().getAttributes();
+        wmlp.gravity = Gravity.BOTTOM | Gravity.CENTER;
+//        wmlp.x = 100;   //x position
+//        wmlp.y = -20;   //y position
+
+        alertDialog.show();
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (!isPressButton)
+                    updateGUI();
+                alertDialog.dismiss();
+            }
+        }, 7000);
+
+
     }
 }

@@ -1,24 +1,364 @@
 [
   {
     "id": 1,
-    "content" : "aa.",
+    "content" : "1.	Simon had worked as a bank ___ for several years before he was promoted to branch manager.",
     "answers": [
-      "a",
-      "a",
-      "a",
-      "aa"
+      "assistant",
+      "teller",
+      "operator",
+      "manager"
     ],
-    "result": "aa"
+    "result": "teller",
+    "explain": "Mình có cụm rất phổ biến: Bank teller: giao dịch viên ngân hàng"
   },
   {
     "id": 2,
-    "content" : "bb.",
+    "content" : "The contract for the new leasing agreement is ___ ready for you to sign.",
     "answers": [
-      "b",
-      "b",
-      "b",
-      "bb"
+      "once",
+      "soon",
+      "now",
+      "forever"
     ],
-    "result": "bb"
+    "result": "now",
+    "explain": "Dịch: Hợp đồng cho thuê mới 'bây giờ' đã sẵn sàng cho bạn ký."
+  },
+  {
+    "id": 3,
+    "content" : "In case of computer failure or malfunction, please ___ to the technical manual for assistance.",
+    "answers": [
+      "inquire",
+      "browse",
+      "check",
+      "refer"
+    ],
+    "result": "refer",
+    "explain": "refer to: xem, tham khảo. Dịch: Trong trường hợp máy tính hỏng hóc hay trục trặc, vui lòng 'tham khảo' sổ tay kỹ thuật để được hỗ trợ."
+  },
+  {
+    "id": 4,
+    "content" : "The new on-line ordering system has proven to be more ___ among the company younger customers.",
+    "answers": [
+      "productive",
+      "popular",
+      "famous",
+      "modern"
+    ],
+    "result": "popular",
+    "explain": "popular: phổ biến. Dịch: Hệ thống đặt hàng trực tuyến mới đã chứng tỏ 'phổ biến' hơn trong số các khách hàng trẻ tuổi của công ty."
+  },
+  {
+    "id": 5,
+    "content" : "After years away from the work place, Ms. Yamata was felling a bit ___ about the upcoming job interview.",
+    "answers": [
+      "homesick",
+      "nervous",
+      "frequent",
+      "impossible"
+    ],
+    "result": "nervous",
+    "explain": "nervous: lo lắng. Dịch: Sau nhiều năm xa nơi làm việc, bà Yamata cảm thấy 'lo lắng' về cuộc phỏng vấn việc làm sắp tới."
+  },
+  {
+    "id": 6,
+    "content" : "The online ___ of The Daily Post is scheduled to deput before the end of the year.",
+    "answers": [
+      "binding",
+      "model",
+      "addition",
+      "edition"
+    ],
+    "result": "edition",
+    "explain": "edition: ấn bản. Dịch: 'Ấn bản' trực tuyến của The Daily Post dự kiến ra mắt trước cuối năm."
+  },
+  {
+    "id": 7,
+    "content" : "Cyber Technologies decided to ___ its new computer game in time for the holiday.",
+    "answers": [
+      "detect",
+      "permit",
+      "launch",
+      "respond"
+    ],
+    "result": "launch",
+    "explain": "launch: giới thiệu / khai trương. Dịch: Cyber Technologies đã quyết định 'giới thiệu' trò chơi máy tính mới của mình vào đúng thời điểm cho kỳ nghỉ."
+  },
+  {
+    "id": 8,
+    "content" : "RDA Ltd. ___ applications for the position of System Coordinator. For a detailed position announcement, please visit our website.",
+    "answers": [
+      "incites",
+      "infringes",
+      "instills",
+      "invites"
+    ],
+    "result": "invites",
+    "explain": "invite: mời / yêu cầu. Dịch: RDA Ltd. 'yêu cầu' những đơn xin việc cho vị trí Điều phối viên Hệ thống. Để có thông báo chi tiết về vị trí, vui lòng truy cập trang web của chúng tôi."
+  },
+  {
+    "id": 9,
+    "content" : "The department’s secretariat will be at your ___ should you need any help.",
+    "answers": [
+      "convenience",
+      "disposal",
+      "jurisdiction",
+      "specifications"
+    ],
+    "result": "disposal",
+    "explain": "Cụm từ be at your disposal: có sẵn/ luôn có mặt để giúp đỡ ai."
+  },
+  {
+    "id": 10,
+    "content" : "The foundation’s director ___ the scientific operations of the organization.",
+    "answers": [
+      "coexists",
+      "contextualizes",
+      "cooperates",
+      "coordinates"
+    ],
+    "result": "cooperates",
+    "explain": "cooperates: tổ chức/hợp tác. Dịch: Giám đốc cơ sở 'tổ chức' các hoạt động khoa học của tổ chức."
+  },
+  {
+    "id": 11,
+    "content" : "The company’s Scientific and Technical Advisory Panel is comprised of ___ scientists appointed by the CEO.",
+    "answers": [
+      "eminent",
+      "imminent",
+      "impending",
+      "pertiment"
+    ],
+    "result": "eminent",
+    "explain": "eminent: xuất sắc/ ưu tú. Dịch: Ban Cố vấn Khoa học và Kỹ thuật của công ty bao gồm các nhà khoa học 'xuất sắc/ ưu tú' được bổ nhiệm bởi Giám đốc điều hành."
+  },
+  {
+    "id": 12,
+    "content" : "My uncle used to smoke two ___ of cigarettes a day.",
+    "answers": [
+      "packets",
+      "boxes",
+      "package",
+      "package"
+    ],
+    "result": "packets",
+    "explain": "Packet of cigarettes: bao thuốc lá"
+  },
+  {
+    "id": 13,
+    "content" : "The cow got out ___ a gap in the fence.",
+    "answers": [
+      "across",
+      "along",
+      "between",
+      "through"
+    ],
+    "result": "through",
+    "explain": "Go out through: đi chui qua"
+  },
+  {
+    "id": 14,
+    "content" : "The fumes were so thick that he was ___ for breath.",
+    "answers": [
+      "suffocating",
+      "inhaling",
+      "gasping",
+      "wheezing"
+    ],
+    "result": "gasping",
+    "explain": "Gasp for breath: Thở hổn hển"
+  },
+  {
+    "id": 15,
+    "content" : "The whole country is up in ___ about the new tax the goverment has put on books.",
+    "answers": [
+      "arms",
+      "fists",
+      "anger",
+      "rage"
+    ],
+    "result": "arms",
+    "explain": "Be up in arms: Phản đối kịch liệt"
+  },
+  {
+    "id": 16,
+    "content" : "She ___ hope of any reconciliation.",
+    "answers": [
+      "departed",
+      "left",
+      "adopt",
+      "abandoned"
+    ],
+    "result": "abandoned",
+    "explain": "Abandon hope = Give up hope = Lose hope: Từ bỏ hy vọng"
+  },
+  {
+    "id": 17,
+    "content" : "The little boy pleaded ___ not to leave him alone in the dark.",
+    "answers": [
+      "on his mother",
+      "his mother",
+      "with his mother",
+      "at his mother"
+    ],
+    "result": "with his mother",
+    "explain": "plead with = beg : van nài, xin xỏ"
+  },
+  {
+    "id": 18,
+    "content" : "Pete was born and brought up in Cornwall and he knows the place like the ___.",
+    "answers": [
+      "nose on his face",
+      "back of his hand",
+      "hairs on his head",
+      "teeth of his mouth"
+    ],
+    "result": "back of his hand",
+    "explain": "like the back of one's hand: rõ như lòng bàn tay"
+  },
+  {
+    "id": 19,
+    "content" : "Rows and silences are ___ and parcel of any marriage.",
+    "answers": [
+      "package",
+      "stamps",
+      "packet",
+      "part"
+    ],
+    "result": "part",
+    "explain": "part and parcel : phần quan trọng, thiết yếu"
+  },
+  {
+    "id": 20,
+    "content" : "Don’t ___ to any conclusion before you know the full facts.",
+    "answers": [
+      "rush",
+      "dive",
+      "leap",
+      "fly"
+    ],
+    "result": "leap",
+    "explain": "Leap / Jump to the conclusion : đưa ra kết luận vội vàng khi chưa nắm rõ sự việc hay khi chưa suy nghĩ"
+  },
+  {
+    "id": 21,
+    "content" : "The mirror was ___ broken.",
+    "answers": [
+      "accident",
+      "accidental",
+      "accidentally",
+      "by accident"
+    ],
+    "result": "accidentally",
+    "explain": "Accidental (adj) – accidentally = by chance (adv): một cách vô tình, không được sắp đặt trước."
+  },
+  {
+    "id": 22,
+    "content" : "She showed great ardour ___ music.",
+    "answers": [
+      "to",
+      "with",
+      "of",
+      "for"
+    ],
+    "result": "for",
+    "explain": "for: dành cho ai đó/cái gì. Dịch: Cô ấy thể hiện một niềm đam mê mãnh liệt 'dành cho' âm nhạc"
+  },
+  {
+    "id": 23,
+    "content" : "A ship called the Titanic ___ after hitting an iceberg in the Ocean.",
+    "answers": [
+      "drowned",
+      "sank",
+      "overflowed",
+      "destroyed"
+    ],
+    "result": "sank",
+    "explain": "Sink: Chìm, đắm (tàu, thuyền). Dịch: Một con tàu gọi là Titanic đã 'chìm' sau khi đụng phải một tảng băng trên đại dương"
+  },
+  {
+    "id": 24,
+    "content" : "You really should buy a DVD player. You have to move with the ___.",
+    "answers": [
+      "times",
+      "time",
+      "timing",
+      "timer"
+    ],
+    "result": "times",
+    "explain": "Move with the times: Bắt kịp thời thế. Dịch: Bạn thật sự nên mua một cái đầu DVD. Bạn phải 'bắt kịp thời thế'"
+  },
+  {
+    "id": 25,
+    "content" : "If it weights ___ 15 kilograms, you have to pay extra.",
+    "answers": [
+      "over",
+      "more",
+      "up",
+      "upward"
+    ],
+    "result": "over",
+    "explain": "over: quá. Dịch: Nếu nó nặng 'quá' 15 kg, bạn phải trả thêm."
+  },
+  {
+    "id": 26,
+    "content" : "He was ___ and so had difficulty getting a job at the art store.",
+    "answers": [
+      "color-blind",
+      "color-blinded",
+      "color-blindness",
+      "color-blinding"
+    ],
+    "result": "color-blind",
+    "explain": "color-blind: mù màu. Dịch: Anh ấy bị 'mù màu', vì vậy khó kiếm một công việc ở cửa hàng nghệ thuật."
+  },
+  {
+    "id": 27,
+    "content" : "We had many battles ___ the US troop.",
+    "answers": [
+      "in",
+      "against",
+      "to",
+      "with"
+    ],
+    "result": "against",
+    "explain": "against: chống lại. Dịch: Chúng tô có nhiều trận chiến 'chống lại' quân đội Mỹ"
+  },
+  {
+    "id": 28,
+    "content" : "This ___ is not big enough to cut down a tree.",
+    "answers": [
+      "axe",
+      "hammer",
+      "screw",
+      "knife"
+    ],
+    "result": "axe",
+    "explain": "axe: cái rìu. Dịch: 'Cái rìu' này không đủ to để đốn hạ một cái cây"
+
+  },
+  {
+    "id": 29,
+    "content" : "Nobody believed him due to his breach ___ promise.",
+    "answers": [
+      "about",
+      "of",
+      "on",
+      "in"
+    ],
+    "result": "of",
+    "explain": "breach of: phá vỡ (cái gì). Dịch: Vì việc 'phá vỡ' lời hứa của anh ta mà chẳng ai tin anh ta"
+  },
+  {
+    "id": 30,
+    "content" : "The issue ___ question is more complex than you think",
+    "answers": [
+      "from",
+      "at",
+      "on",
+      "in"
+    ],
+    "result": "in",
+    "explain": "in question: đang được thảo luận. Dịch: Vấn đề 'đang được thảo luận' phức tạp hơn bạn nghĩ."
+
   }
 ]

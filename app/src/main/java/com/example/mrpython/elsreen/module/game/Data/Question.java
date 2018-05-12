@@ -11,6 +11,7 @@ import java.util.Collections;
 public class Question {
     private String question;
     private String result;
+    private String explain;
     private ArrayList<String> listAnswer;
 
     public  Question() {
@@ -29,6 +30,10 @@ public class Question {
 
     public String getResult() {
         return result;
+    }
+
+    public String getExplain() {
+        return explain;
     }
 
     public void setResult(String result) {
@@ -61,11 +66,12 @@ public class Question {
         Collections.shuffle(this.listAnswer);
     }
 
-    public void setData(String question, String result, ArrayList listAnswer) {
+    public void setData(String question, String result, ArrayList listAnswer, String explain) {
         this.cleanUp();
         this.setQuestion(question);
         this.setResult(result);
         this.setListAnswer(listAnswer);
+        this.explain = explain;
     }
     private void cleanUp(){
         this.question = null;
@@ -73,14 +79,14 @@ public class Question {
         this.listAnswer = null;
         this.listAnswer = new ArrayList<String>();
     }
-    public void  cheatData() {
-        String question = "Tôi Tên là gì ?";
-        String result = "oc cho";
-        ArrayList<String> arr = new ArrayList<>();
-        arr.add("oc cho");
-        arr.add("oc cho 1");
-        arr.add("oc cho 2");
-        arr.add("oc cho 3");
-        this.setData(question, result, arr);
-    }
+//    public void  cheatData() {
+//        String question = "Tôi Tên là gì ?";
+//        String result = "oc cho";
+//        ArrayList<String> arr = new ArrayList<>();
+//        arr.add("oc cho");
+//        arr.add("oc cho 1");
+//        arr.add("oc cho 2");
+//        arr.add("oc cho 3");
+//        this.setData(question, result, arr);
+//    }
 }
