@@ -1,6 +1,7 @@
 package com.example.mrpython.elsreen;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 
 import android.app.Dialog;
@@ -26,6 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -192,7 +194,17 @@ public class MainActivity extends AppCompatActivity {
     public void sendSaveInfoPlayer(){
         myRef.child(gameBase.getPlayer().getId()).setValue(gameBase.getPlayer());
     }
+
+    public static void hideKeyboard(Activity activity) {
+        View view = activity.findViewById(android.R.id.content);
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
     public void setName(View view) {
+        hideKeyboard(this);
         String name = txtInputName.getText().toString();
         if (!name.isEmpty())
         {

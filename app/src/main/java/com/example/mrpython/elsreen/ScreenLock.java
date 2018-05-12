@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ebanx.swipebtn.OnStateChangeListener;
+import com.ebanx.swipebtn.SwipeButton;
 import com.example.mrpython.elsreen.module.game.Data.GameBase;
 import com.example.mrpython.elsreen.module.game.Data.Player;
 import com.example.mrpython.elsreen.module.game.Data.Question;
@@ -30,8 +32,9 @@ import java.util.Random;
 
 public class ScreenLock extends AppCompatActivity implements View.OnClickListener {
     // GUI
-    private TextView txtName, txtLevel, txtQuestion;
-    private Button btnAnswerA, btnAnswerB, btnAnswerC, btnAnswerD, btnSOS;
+    private TextView txtName, txtLevel, txtQuestion, txtSOS;
+    private Button btnAnswerA, btnAnswerB, btnAnswerC, btnAnswerD;
+    private SwipeButton enableButton;
     private LinearLayout linBackground;
     private Random random;
     private Resources res;
@@ -130,23 +133,32 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         this.txtName = (TextView) findViewById(R.id.txtName);
         this.txtLevel = findViewById(R.id.txtLevel);
         this.txtQuestion = findViewById(R.id.txtQuestion);
+        this.txtSOS = findViewById(R.id.txtSOS);
 //        this.rdGroup = findViewById(R.id.rdGroup);
         this.btnAnswerA = findViewById(R.id.btnAnswerA);
         this.btnAnswerB = findViewById(R.id.btnAnswerB);
         this.btnAnswerC = findViewById(R.id.btnAnswerC);
         this.btnAnswerD = findViewById(R.id.btnAnswerD);
+        this.enableButton = (SwipeButton) findViewById(R.id.btnSwiping);
 
-        this.btnSOS = findViewById(R.id.btnSOS);
+        enableButton.setOnStateChangeListener(new OnStateChangeListener() {
+            @Override
+            public void onStateChange(boolean active) {
+                onSOSClick();
+            }
+        });
 
         this.gameBase =  GameBase.getGameBase(this);
         player = gameBase.getPlayer();
         this.updateGUI();
     }
+
     public void updateGUI(){
         this.updateInfo();
         this.updateQuestion();
         player.loadNumOfSOS();
     }
+
     public void updateQuestion(){
         this.currentQuestion = this.gameBase.getRandomQuestion(this.gameBase.getLearningMode());
         this.currentQuestion.shuffleAnswer();
@@ -160,17 +172,20 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
         this.btnAnswerD.setBackgroundResource(R.drawable.button_custom);
         this.btnAnswerD.setText(String.valueOf(this.currentQuestion.getListAnswer().get(3)));
     }
+
     public void updateInfo(){
         this.txtName.setText(String.valueOf(player.getName()));
         this.txtLevel.setText(String.valueOf("Level : " + player.getLevel()));
-        this.btnSOS.setText("SOS(" + GameBase.numOfSOS + ")");
+        txtSOS.setText("SOS(" + GameBase.numOfSOS + ")");
     }
+
     public void addEvents(){
         this.btnAnswerA.setOnClickListener(this);
         this.btnAnswerB.setOnClickListener(this);
         this.btnAnswerC.setOnClickListener(this);
         this.btnAnswerD.setOnClickListener(this);
     }
+
     public void processCheck(int id){
         final Button btnResult = (Button) findViewById(id);
         String rs = btnResult.getText().toString();
@@ -241,7 +256,7 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
 
     }
 
-    public void onSOSClick(View view) {
+    public void onSOSClick() {
         if (GameBase.numOfSOS > 0)
         {
             GameBase.numOfSOS--;
