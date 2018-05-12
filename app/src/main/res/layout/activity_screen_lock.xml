@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnSOS"
         android:text="SOS"
-        android:background="@color/button_pink"
+        android:background="@color/sos_btn"
         android:onClick="onSOSClick"
         />
     <com.ebanx.swipebtn.SwipeButton
