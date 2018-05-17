@@ -291,8 +291,6 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
 
         WindowManager.LayoutParams wmlp = alertDialog.getWindow().getAttributes();
         wmlp.gravity = Gravity.BOTTOM | Gravity.CENTER;
-//        wmlp.x = 100;   //x position
-//        wmlp.y = -20;   //y position
 
         alertDialog.show();
 
