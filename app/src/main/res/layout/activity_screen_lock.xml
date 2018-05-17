@@ -7,7 +7,7 @@
     android:gravity="center_vertical|center_horizontal"
     android:orientation="vertical"
     tools:context="com.example.mrpython.elsreen.ScreenLock"
-    android:background="@drawable/background"
+    android:background="@drawable/background1"
     android:id="@+id/screenWrapper">
     <TextView
         android:id="@+id/txtName"
@@ -32,7 +32,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/level_margin_vertical"
+        android:layout_marginVertical="@dimen/question_margin_vertical"
         android:id="@+id/txtSOS"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/sos_text_size"
@@ -125,7 +125,7 @@
     <com.ebanx.swipebtn.SwipeButton
         android:id="@+id/btnSwiping"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="80dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         app:inner_text="SOS"

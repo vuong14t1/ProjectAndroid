@@ -116,17 +116,4 @@
         android:layout_marginBottom="@dimen/layout_margin_bottom_btn_action"
         android:background="@drawable/button_default"
         android:textColor="@color/white"/>
-
-    <Button
-        android:layout_width="@dimen/with_btn_action"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnShare"
-        android:text="@string/share_level"
-        android:paddingLeft="@dimen/padding_btn_action"
-        android:paddingRight="@dimen/padding_btn_action"
-        android:layout_marginBottom="@dimen/layout_margin_bottom_btn_action"
-        android:background="@drawable/button_default"
-        android:textColor="@color/white"/>
-
-
 </LinearLayout>

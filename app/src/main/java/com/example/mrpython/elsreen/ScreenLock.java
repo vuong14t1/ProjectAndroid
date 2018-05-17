@@ -305,7 +305,5 @@ public class ScreenLock extends AppCompatActivity implements View.OnClickListene
                 alertDialog.dismiss();
             }
         }, 7000);
-
-
     }
 }
