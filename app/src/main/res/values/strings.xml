@@ -10,7 +10,6 @@
     <string name="learning_mode">Learning Mode</string>
     <string name="top_player">Top 5 Player</string>
     <array name="listBackgrounds">
-        <item>@drawable/background</item>
         <item>@drawable/background1</item>
         <item>@drawable/background2</item>
         <item>@drawable/background3</item>
